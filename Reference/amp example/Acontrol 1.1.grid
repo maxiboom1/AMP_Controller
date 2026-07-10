@@ -1,0 +1,2016 @@
+<?xml version="1.0" encoding="UTF-8"?><abs contexttype="opengear" editlock="Kisa1720" gridsize="20" id="_top" keepalive="true" scroll="false">
+   <timer id="date for log" pattern="dd-MM-YY" rate="500">
+      <timertask tasktype="ogscript">params.setValue('dateForLog', 0, event.getDisplay());</timertask>
+   </timer>
+   <timer id="clock" name="clock" pattern="HH:mm:ss" rate="500">
+      <timertask tasktype="ogparamset">params.setValue('realClock', 0, event.getDisplay());</timertask>
+   </timer>
+   <timer id="K2 request timer" pattern="HH:mm:ss" rate="6000">
+      
+   <timertask tasktype="ogscript">function delayedRequest(){
+   if(server22!==null){   
+   server22.writeString(IDsChangeListReqALIAS, false);  
+   }
+}
+
+
+
+var server21 = ogscript.getObject('K21vtr1');
+var server22 = ogscript.getObject('K22vtr1');   
+   
+if(server21!==null){   
+   server21.writeString(IDsChangeListReqALIAS, false);
+   //ogscript.debug('21:set idchange');
+   }
+   
+ogscript.asyncExec(delayedRequest,2000);</timertask>
+   </timer>
+   <meta>
+      <ogscript handles="ondrag" targetid="settings-box">if (ogscript.getObject('mode') == 'size')
+{
+   //ogscript.setSize('settings-box', event.getX(), event.getY());
+}
+else if (ogscript.getObject('mode') == 'move')
+{
+   var origin = ogscript.getObject('position');
+   var offsetX = ogscript.getObject('offsetX');
+   var offsetY = ogscript.getObject('offsetY');
+   ogscript.reposition('settings-box', origin.x + event.x - offsetX, origin.y + event.y - offsetY);
+   ogscript.putObject('position', ogscript.getPosition('settings-box'));
+}</ogscript>
+      <ogscript handles="onmousedown" targetid="settings-box">var size = ogscript.getSize('settings-box');
+if (event.getX() &lt; size.width - 10 &amp;&amp; event.y &lt; size.height - 10)
+{
+   ogscript.putObject('mode', 'move');
+   ogscript.putObject('position', ogscript.getPosition('settings-box'));
+   ogscript.putObject('offsetX', event.x);
+   ogscript.putObject('offsetY', event.y);
+}
+else
+{
+   ogscript.putObject('mode', 'size');
+}</ogscript>
+      <ogscript handles="ondrop" targetid="player.A">var clip = params.getValue('clipTable.' + params.getValue('selectedClipList', 0) + '.clipname', 0);
+params.setValue('playerA.cueName', 0, clip);
+
+var player = ogscript.getObject('K21vtr1'); 
+player.writeString(ampMessageBuilder(clip,'4a14'), false);</ogscript>
+      <ogscript handles="ondrop" targetid="player.B">var clip = params.getValue('clipTable.' + params.getValue('selectedClipList', 0) + '.clipname', 0);
+params.setValue('playerB.cueName', 0, clip);
+
+var player = ogscript.getObject('K21vtr2'); 
+player.writeString(ampMessageBuilder(clip,'4a14'), false);</ogscript>
+      <ogscript handles="ondrop" targetid="player.C">var clip = params.getValue('clipTable.' + params.getValue('selectedClipList', 0) + '.clipname', 0);
+params.setValue('playerC.cueName', 0, clip);
+
+var player = ogscript.getObject('K21vtr3'); 
+player.writeString(ampMessageBuilder(clip,'4a14'), false);</ogscript>
+      <ogscript handles="ondrop" targetid="player.D">var clip = params.getValue('clipTable.' + params.getValue('selectedClipList', 0) + '.clipname', 0);
+params.setValue('playerD.cueName', 0, clip);
+
+var player = ogscript.getObject('K22vtr1'); 
+player.writeString(ampMessageBuilder(clip,'4a14'), false);</ogscript>
+      <ogscript handles="ondrop" targetid="player.E">var clip = params.getValue('clipTable.' + params.getValue('selectedClipList', 0) + '.clipname', 0);
+params.setValue('playerE.cueName', 0, clip);
+
+var player = ogscript.getObject('K22vtr2'); 
+player.writeString(ampMessageBuilder(clip,'4a14'), false);</ogscript>
+      <ogscript handles="ondrop" targetid="player.F">var clip = params.getValue('clipTable.' + params.getValue('selectedClipList', 0) + '.clipname', 0);
+params.setValue('playerF.cueName', 0, clip);
+
+var player = ogscript.getObject('K22vtr3'); 
+player.writeString(ampMessageBuilder(clip,'4a14'), false);</ogscript>
+      <ogscript handles="dragvalue" targetid="dragspot">return</ogscript>
+      <params>
+         <param access="1" constrainttype="STRUCT" name="ROTableTemplate" oid="ROTableTemplate" structtype="ROlist" type="STRUCT" widget="table">
+            <value>
+               <subparam access="1" maxlength="-1" name="video" suboid="video" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="storySlug" suboid="storySlug" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="#" suboid="storyNum" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="channel" suboid="channel" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="available" suboid="available" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="storyID" suboid="storyID" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="roID" suboid="roID" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="loop" suboid="loop" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="source" suboid="source" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="cue" suboid="cue" type="STRING" value="Test" widget="default"/>
+            </value>
+         </param>
+         <param access="1" constrainttype="STRUCT" name="ROTableTemplate" oid="ROTable1" structtype="ROlist" templateoid="ROTableTemplate" type="STRUCT_ARRAY" widget="table">
+            <value>
+               <subparam suboid="available" value=""/>
+               <subparam suboid="channel" value=""/>
+               <subparam suboid="video" value=""/>
+               <subparam suboid="storySlug" value=""/>
+               <subparam suboid="storyNum" value=""/>
+               <subparam suboid="storyID" value=""/>
+               <subparam suboid="roID" value=""/>
+               <subparam suboid="loop" value=""/>
+               <subparam suboid="source" value=""/>
+               <subparam suboid="cue" value=""/>
+            </value>
+         </param>
+         <param access="1" constrainttype="STRUCT" name="ROTableTemplate" oid="ROTable2" structtype="ROlist" templateoid="ROTableTemplate" type="STRUCT_ARRAY" widget="table">
+            <value>
+               <subparam suboid="video" value=""/>
+               <subparam suboid="channel" value=""/>
+               <subparam suboid="available" value=""/>
+               <subparam suboid="storyID" value=""/>
+               <subparam suboid="roID" value=""/>
+               <subparam suboid="storySlug" value=""/>
+               <subparam suboid="storyNum" value=""/>
+               <subparam suboid="loop" value=""/>
+               <subparam suboid="source" value=""/>
+               <subparam suboid="cue" value=""/>
+            </value>
+         </param>
+         <param access="1" constrainttype="STRUCT" name="ROTableTemplate" oid="ROTable3" structtype="ROlist" templateoid="ROTableTemplate" type="STRUCT_ARRAY" widget="table">
+            <value>
+               <subparam suboid="video" value=""/>
+               <subparam suboid="channel" value=""/>
+               <subparam suboid="available" value=""/>
+               <subparam suboid="storyID" value=""/>
+               <subparam suboid="roID" value=""/>
+               <subparam suboid="storySlug" value=""/>
+               <subparam suboid="storyNum" value=""/>
+               <subparam suboid="loop" value=""/>
+               <subparam suboid="source" value=""/>
+               <subparam suboid="cue" value=""/>
+            </value>
+         </param>
+         <param access="1" constrainttype="STRUCT" name="ROTableTemplate" oid="ROTable4" structtype="ROlist" templateoid="ROTableTemplate" type="STRUCT_ARRAY" widget="table">
+            <value>
+               <subparam suboid="video" value=""/>
+               <subparam suboid="channel" value=""/>
+               <subparam suboid="available" value=""/>
+               <subparam suboid="storyID" value=""/>
+               <subparam suboid="roID" value=""/>
+               <subparam suboid="storySlug" value=""/>
+               <subparam suboid="storyNum" value=""/>
+               <subparam suboid="loop" value=""/>
+               <subparam suboid="source" value=""/>
+               <subparam suboid="cue" value=""/>
+            </value>
+         </param>
+         <param access="1" constrainttype="STRUCT" name="ROTableTemplate" oid="ROTable5" structtype="ROlist" templateoid="ROTableTemplate" type="STRUCT_ARRAY" widget="table">
+            <value>
+               <subparam suboid="video" value=""/>
+               <subparam suboid="channel" value=""/>
+               <subparam suboid="available" value=""/>
+               <subparam suboid="storyID" value=""/>
+               <subparam suboid="roID" value=""/>
+               <subparam suboid="storySlug" value=""/>
+               <subparam suboid="storyNum" value=""/>
+               <subparam suboid="loop" value=""/>
+               <subparam suboid="source" value=""/>
+               <subparam suboid="cue" value=""/>
+            </value>
+         </param>
+         <param access="1" constrainttype="STRUCT" name="ROTableTemplate" oid="ROTable6" structtype="ROlist" templateoid="ROTableTemplate" type="STRUCT_ARRAY" widget="table">
+            <value>
+               <subparam suboid="video" value=""/>
+               <subparam suboid="channel" value=""/>
+               <subparam suboid="available" value=""/>
+               <subparam suboid="storyID" value=""/>
+               <subparam suboid="roID" value=""/>
+               <subparam suboid="storySlug" value=""/>
+               <subparam suboid="storyNum" value=""/>
+               <subparam suboid="loop" value=""/>
+               <subparam suboid="source" value=""/>
+               <subparam suboid="cue" value=""/>
+            </value>
+         </param>
+         <param access="1" constrainttype="STRUCT" name="ClipList Template" oid="clipListDefinition" structtype="clipListInfo" type="STRUCT" widget="table">
+            <value>
+               <subparam access="1" maxlength="-1" name="clipname" suboid="clipname" type="STRING" value="Test" widget="default"/>
+               <subparam access="1" maxlength="-1" name="available" suboid="available" type="STRING" value="Test" widget="default"/>
+            </value>
+         </param>
+         <param access="1" constrainttype="STRUCT" name="ClipList Template" oid="clipTable" structtype="clipListInfo" templateoid="clipListDefinition" type="STRUCT_ARRAY" widget="table">
+            <value>
+               <subparam suboid="clipname" value=""/>
+               <subparam suboid="available" value=""/>
+            </value>
+         </param>
+         <param access="1" constrainttype="INT_NULL" name="selected1" oid="selected1" precision="0" type="INT16" value="0" widget="default"/>
+         <param access="1" constrainttype="INT_NULL" name="selected2" oid="selected2" precision="0" type="INT16" value="234" widget="default"/>
+         <param access="1" constrainttype="INT_NULL" name="selected3" oid="selected3" precision="0" type="INT16" value="19" widget="default"/>
+         <param access="1" constrainttype="INT_NULL" name="selected4" oid="selected4" precision="0" type="INT16" value="22" widget="default"/>
+         <param access="1" constrainttype="INT_NULL" name="selected5" oid="selected5" precision="0" type="INT16" value="0" widget="default"/>
+         <param access="1" constrainttype="INT_NULL" name="selected6" oid="selected6" precision="0" type="INT16" value="0" widget="default"/>
+         <param access="1" constrainttype="INT_NULL" name="selectedClipList" oid="selectedClipList" precision="0" type="INT16" value="6" widget="default"/>
+         <param access="1" maxlength="0" name="textinput" oid="textinput" type="STRING" value="" widget="multiline-text"/>
+         <param access="1" maxlength="0" name="timerCounter" oid="timerCounter" type="STRING" value="00:00:00:000" widget="label"/>
+         <param access="1" maxlength="0" name="textinput2" oid="textinput2" type="STRING" value="" widget="multiline-text"/>
+         <param access="1" maxlength="0" name="led" oid="led" type="STRING" value="&lt;#red&gt;" widget="dot"/>
+         <param access="1" maxlength="0" name="led2" oid="led2" type="STRING" value="&lt;#red&gt;" widget="dot"/>
+         <param access="1" maxlength="0" name="host" oid="hostNRCS" type="STRING" value="10.168.1.130" widget="text"/>
+         <param access="1" maxlength="0" name="hostK21" oid="hostK21" type="STRING" value="10.168.1.90" widget="text"/>
+         <param access="1" maxlength="0" name="hostK22" oid="hostK22" type="STRING" value="10.168.1.89" widget="text"/>
+         <param access="1" maxlength="0" name="ledK21" oid="ledK21" type="STRING" value="&lt;#red&gt;" widget="dot"/>
+         <param access="1" maxlength="0" name="ledK22" oid="ledK22" type="STRING" value="&lt;#red&gt;" widget="dot"/>
+         <param access="1" constrainttype="INT_CHOICE" name="binList" oid="binList" precision="0" type="INT32" value="0" widget="combo">
+            <constraint key="0">please connect</constraint>
+         </param>
+         <param access="1" maxlength="0" name="workingBin" oid="workingBin" type="STRING" value="IMPORTS" widget="text"/>
+         <param access="1" maxlength="0" name="K2Secondary" oid="K2Secondary" type="STRING" value="TLV2" widget="text"/>
+         <param access="1" maxlength="0" name="K2Primary" oid="K2Primary" type="STRING" value="TLV1 " widget="text"/>
+         <param access="1" maxlength="0" name="playerA.cueName" oid="playerA.cueName" type="STRING" value="" widget="text-display"/>
+         <param access="1" maxlength="0" name="playerB.cueName" oid="playerB.cueName" type="STRING" value="" widget="text-display"/>
+         <param access="1" maxlength="0" name="playerC.cueName" oid="playerC.cueName" type="STRING" value="" widget="text-display"/>
+         <param access="1" maxlength="0" name="playerD.cueName" oid="playerD.cueName" type="STRING" value="" widget="text-display"/>
+         <param access="1" maxlength="0" name="playerE.cueName" oid="playerE.cueName" type="STRING" value="" widget="text-display"/>
+         <param access="1" maxlength="0" name="playerF.cueName" oid="playerF.cueName" type="STRING" value="" widget="text-display"/>
+         <param access="1" maxlength="0" name="realClock" oid="realClock" type="STRING" value="03:58:22" widget="label"/>
+         <param access="1" maxlength="0" name="dateForLog" oid="dateForLog" type="STRING" value="15-02-21" widget="label"/>
+      </params>
+      <api name="Router,Parser,ACK">function mosRouter(message){   
+   
+   log(message); // this will send the raw protocol message to log 
+   var xml    = XMLparser(ogscript.parseXML(message)); 
+   if(xml.roCreate==true)       {roCreateEvent1(xml,'roCreate'); }                        
+   if(xml.roListAll==true )     {setLineupList(xml); }                  
+   if(xml.roStorySend==true)    {roStorySendEvent1(xml); }   
+   if(xml.roStoryMove==true)    {roStoryMoveEvent(xml); }            
+   if(xml.roDelete==true)       {deleteRO(xml); }         
+   if(xml.roList==true)         {roCreateEvent1(xml,'roList'); }   
+   if(xml.roStoryDelete==true)  {storyDeleteEvent(xml); }    
+   if(xml.roStoryInsert==true)  {roStoryInsertEvent(xml); }   
+   if(xml.roStoryReplace==true) {roStoryReplaceEvent(xml); } 
+   if(xml.roStoryAppend==true)  {roStoryAppendEvent(xml); } 
+   if(xml.meta==true)           {roMetadataReplace(xml);  }          
+   }
+
+
+//******************************* ACK functions ***********************************
+function ack(xml){ 
+    
+    var messageID  = ogscript.getObject('ackCount');  
+    var NRCS = ogscript.getObject('E');
+    var ack = ackGen(messageID,Number(xml.roID));
+    NRCS.writeAsBytes(ack);     
+    log(mosAck0 + messageID + mosAck1 + Number(xml.roID) + mosAck2 ); // this will send ack to log
+    ogscript.putObject('ackCount', messageID+1);       
+   }
+
+
+function ackGen(messageID,roID){
+   return strToHex(mosAck0) + numberToHex(messageID) + strToHex(mosAck1) + numberToHex(Number(roID)) + strToHex(mosAck2);
+   }
+
+//******************************* data convertors functions ************************
+
+function numberToHex(number){   
+   //ogscript.debug('numberToHex');
+   var hex = '';
+   number=number.toString().split(''); 
+   for(i=0;i&lt;number.length;i++){
+      hex +='00'+ (48+ Number(number[i])).toString(16);    
+      }  
+   return hex;    
+   }   
+
+function strToHex(str){   
+   var hex = '';
+   str=str.split(''); 
+   for(i=0;i&lt;str.length;i++){
+      hex +='00'+ Number(str[i].charCodeAt(0)).toString(16);    
+      }  
+   return hex;    
+   }
+
+function rowBuilder(tableIndex,storyIndex,roID,storyID){
+   //ogscript.debug('rowBuilder');   
+   //var red1 = '&lt;html&gt;&lt;font color="#FF0000"&gt;';
+   //var red2 = '&lt;/font&gt;&lt;/html&gt;';
+   var video= params.getValue('ROTable'+tableIndex +'.' + storyIndex  + '.video', 0); 
+   var storySlug = params.getValue('ROTable'+tableIndex +'.' + storyIndex +  '.storySlug', 0);
+   var storyNum =  params.getValue('ROTable'+tableIndex +'.' + storyIndex + '.storyNum', 0);
+   var channel =   params.getValue('ROTable'+tableIndex +'.' + storyIndex + '.channel', 0);
+   var available = params.getValue('ROTable'+tableIndex +'.' + storyIndex + '.available', 0); 
+   var loop =      params.getValue('ROTable'+tableIndex +'.' + storyIndex + '.loop', 0); 
+   var source =    params.getValue('ROTable'+tableIndex +'.' + storyIndex + '.source', 0);
+   var cue =       params.getValue('ROTable'+tableIndex +'.' + storyIndex + '.cue', 0);  
+   if(video==null){video='';}
+   if(storySlug==null){storySlug='';}
+   if(storyNum==null){storyNum='';}
+   if(channel==null){channel='';}
+   if(available==null){available='';}
+   if(storyID==null){storyID='';}
+   if(roID==null){roID='';}
+   if(loop==null){loop='';}
+   if(source==null){loop='';}
+   if(cue==null){cue='';}
+   var newValue = {"channel": channel,"available": available ,"video": video,"storySlug": storySlug ,"storyNum": storyNum,"storyID": storyID,"roID":roID,"loop":loop,"source":source,"cue":cue};
+   
+   return newValue;
+   
+   }      
+
+
+// ***************************** XML PARSER *************************************
+
+
+function XMLparser(xml){
+ 
+   var roIDNode =       xml.getElementsByTagName('roID'); 
+   var roSlugNode =     xml.getElementsByTagName('roSlug');
+   var storyIDNode =    xml.getElementsByTagName('storyID');
+   var storySlugNode =  xml.getElementsByTagName('storySlug');
+   var storyNumNode =   xml.getElementsByTagName('storyNum');
+   var storyNode =      ogscript.runXPath('//story', xml);
+
+   var roID =           roIDNode.item(0);                                   if(roID!==null){roID = roID.getTextContent();}else{roID='';}
+   var roSlug =         roSlugNode.item(0);                                 if(roSlug!==null){roSlug = roSlug.getTextContent();}else{roSlug='';}
+   var storyID0 =       storyIDNode.item(0);                                if(storyID0!==null){storyID0 = storyID0.getTextContent();}else{storyID0='';} 
+   var storyID1 =       storyIDNode.item(1);                                if(storyID1!==null){storyID1 = storyID1.getTextContent();}else{storyID1='';} 
+   var storySlug =      storySlugNode.item(0);                              if(storySlug!==null){storySlug = storySlug.getTextContent();}else{storySlug='';}
+   var storyNum  =      storyNumNode.item(0);                               if(storyNum!==null){storyNum = storyNum.getTextContent();}else{storyNum='';}
+   var source  =        xml.getElementsByTagName('SOURCE').item(0);         if(source!==null){source = source.getTextContent();}else{source='';}
+   
+   var roList =         xml.getElementsByTagName('roList').item(0);         if(roList!==null){roList = true}
+   var roListAll =      xml.getElementsByTagName('roListAll').item(0);      if(roListAll!==null){roListAll = true}
+   var roCreate =       xml.getElementsByTagName('roCreate').item(0);       if(roCreate!==null){roCreate = true}
+   var roDelete =       xml.getElementsByTagName('roDelete').item(0);       if(roDelete!==null){roDelete = true}
+   var roStorySend =    xml.getElementsByTagName('roStorySend').item(0);    if(roStorySend!==null){roStorySend = true}
+   var roStoryMove =    xml.getElementsByTagName('roStoryMove').item(0);    if(roStoryMove!==null){roStoryMove = true}
+   var roStoryDelete =  xml.getElementsByTagName('roStoryDelete').item(0);  if(roStoryDelete!==null){roStoryDelete = true}
+   var roStoryInsert =  xml.getElementsByTagName('roStoryInsert').item(0);  if(roStoryInsert!==null){roStoryInsert = true}
+   var roStoryReplace = xml.getElementsByTagName('roStoryReplace').item(0); if(roStoryReplace!==null){roStoryReplace = true}
+   var roStoryAppend =  xml.getElementsByTagName('roStoryAppend').item(0);  if(roStoryAppend!==null){roStoryAppend = true}
+   var meta =  xml.getElementsByTagName('roMetadataReplace').item(0);       if(meta!==null){meta = true}
+   var video = xml.getElementsByTagName('video').item(0);                   if(video!==null){video = video.getTextContent();}else{video='';}
+   
+   return {
+      
+      roID: roID,
+      roSlug:roSlug,
+      roIDNode:roIDNode,
+      roSlugNode:roSlugNode,
+      storyIDNode:storyIDNode,
+      storySlugNode:storySlugNode,
+      storyNumNode:storyNumNode,
+      storyNode:storyNode,
+      storyID0: storyID0,
+      storyID1:storyID1,
+      storySlug:storySlug,
+      storyNum:storyNum,
+        
+      roList:roList,
+      roListAll:roListAll,
+      roCreate:roCreate,
+      roDelete:roDelete,
+      roStorySend:roStorySend,
+      roStoryMove:roStoryMove,
+      roStoryDelete:roStoryDelete,
+      roStoryInsert:roStoryInsert,
+      roStoryReplace:roStoryReplace,
+      roStoryAppend:roStoryAppend,
+      video:video.toUpperCase(),
+      source:source,
+      meta:meta
+      
+        
+    };
+   
+   }
+
+function log(cmd){
+   var output;
+   var clock = params.getValue('realClock', 0) + "\n";
+   var date = params.getValue('dateForLog', 0);
+   var fileContent = ogscript.post("logs\\" + date + ".txt", null);  //READ THE CURRENT FILE, IF EXISTS
+   
+      if (fileContent != null)
+      {
+         fileContent += clock +cmd;
+         ogscript.saveToFile("logs\\" + date + ".txt",fileContent + "\n"); // SAVE TO THE FILE
+         
+         }else{
+         
+        output = ogscript.createFileOutput("logs\\" + date + ".txt",false); 
+        ogscript.saveToFile("logs\\" + date + ".txt",clock+cmd + "\n"); // SAVE TO THE FILE 
+        output.close(); 
+      }
+
+   }</api>
+      <api name="functions">function sendRoReqAll(){  //triggered from client listener onConnect() event
+   //ogscript.debug('sendRoReqAll');   
+   var client = ogscript.getObject('client10541');
+   client.writeAsBytes(strToHex(roReqAll));
+   
+}
+
+
+function sendRoReq(){  //triggered first by setLineupList() (who generate lineup list object 'rolist', and then by roCreateEvent())
+   //ogscript.debug('sendRoReq');   
+   var count = Number(ogscript.getObject('ROCounter'));        
+   var ROList = ogscript.getObject('roList');
+   if (count&gt;0){
+      var NRCSclient = ogscript.getObject('client10541');
+      NRCSclient.writeAsBytes(strToHex('&lt;mos&gt;&lt;mosID&gt;VTR1&lt;/mosID&gt;&lt;ncsID&gt;INCEPTION&lt;/ncsID&gt;&lt;messageID&gt;&lt;/messageID&gt;&lt;roReq&gt;&lt;roID&gt;') + numberToHex(Number(ROList[count-1])) + strToHex('&lt;/roID&gt;&lt;/roReq&gt;&lt;/mos&gt;')); 
+      ogscript.putObject('ROCounter', count-1);        
+      } 
+}
+
+
+function setLineupList(xml) {  //triggered by &lt;roListAll&gt;   
+   //ogscript.debug('setLineupList');   
+   var ROList = [];
+   for (i=0 ; i&lt;(xml.roIDNode).length ;i++){
+            
+      var roID    =  xml.roIDNode.item(i).getTextContent();   
+      var roSlug  =  xml.roSlugNode.item(i).getTextContent(); 
+      ROList.push(roID);
+      //Set Names to empty buttons , and set roID to empty table
+      for (x = 1; x &lt; 7; x++) {  
+         if(params.getValue("ROTable" + x +".0" + ".roID", 0) == "" ){   
+            
+            params.setValue("ROTable" + x +".0" + ".roID",0,roID);
+            ogscript.rename('table'+x, roSlug); 
+            break;            
+         }      
+      }                    
+   }
+   var ROListObject = ogscript.putObject('roList',ROList); 
+   ogscript.putObject('ROCounter', ROList.length);        
+   if(ROList.length&gt;0){sendRoReq(ROListObject);} // in case there is no monitored lineups, won't send roReq
+}
+
+
+function roMetadataReplace(xml){
+   var x;
+   for (x = 1; x &lt; 7; x++) {  
+         if(params.getValue("ROTable" + x +".0" + ".roID", 0) == xml.roID ){ogscript.rename('table'+x, xml.roSlug); break;}            
+         }      
+   ack(xml);
+   }
+
+
+function roStorySendEvent1(xml){  //triggered by &lt;roStorySend&gt;
+   //ogscript.debug('roStorySendEvent1');   
+   //this check if the current storyID match lineupLoad - if it is - then the lineup loading finished, and we can fire full listmatch
+   if(xml.storyID0 == ogscript.getObject('lineupLoad')){ogscript.putObject('lineupLoad','');ogscript.asyncExec(matchLists,300);ogscript.rename('bar','LINEUP LOADED');  }
+   
+   for (x = 1; x &lt; 7; x++) {  
+      if(params.getValue("ROTable" + x +".0" + ".roID", 0) == xml.roID ){var tableIndex = (x).toString();}
+      } 
+  
+   if(tableIndex!==undefined){   
+      var structCount = params.getElementCount('ROTable' + tableIndex);
+      var currentVideo,currentSource;
+      for(i=0;i&lt;structCount;i++){
+         if (params.getValue('ROTable'+tableIndex +'.' + i + '.storyID', 0) == xml.storyID0){
+             currentVideo = params.getValue('ROTable'+tableIndex +'.' + i + '.video', 0);
+             currentSource = params.getValue('ROTable'+tableIndex +'.' + i + '.source', 0);
+             // The idea is to skip all un-changed updates  - if video slug doesnt changed - do nothing. 
+             if(xml.video!==currentVideo){
+               params.setValue("ROTable" + tableIndex + "." + i + ".video",0, xml.video);if(xml.video == ''){params.setValue("ROTable" + tableIndex + "." + i + ".available",0, '');} 
+               if(ogscript.getObject('lineupLoad')==''){ogscript.asyncExec(matchLists,100);}
+                  }
+             if(xml.source!==currentSource){params.setValue("ROTable" + tableIndex + "." + i + ".source",0, xml.source); }
+             break;                              
+            }      
+         }
+      }
+   ack(xml); 
+      }
+
+
+function createNewTableRow(storySlug,storyNum,storyID,tableIndex,roID){  //triggered by roCreateEvent1() func
+   //ogscript.debug('createNewTableRow');      
+   var structCount = params.getElementCount('ROTable'+tableIndex);
+   if (structCount == 1 &amp;&amp; params.getValue('ROTable' + tableIndex + '.0.storySlug', 0) == "") {structCount = 0;}
+   var newValue = {"channel": "","available": "" ,"video": "","storySlug": storySlug ,"storyNum": storyNum,"storyID": storyID,"roID":roID,"loop":"","source":"","cue":"" };
+   params.setValue('ROTable' + tableIndex, structCount, newValue);
+}
+
+
+function roCreateEvent1(xml,eventType){  //triggered by &lt;roList&gt; and &lt;roCreate&gt;
+   //ogscript.debug('roCreateEvent1');   
+   var storyID,storySlug,storyNum; 
+   var tableIndex = '';
+   for (x = 1; x &lt; 7; x++) {            // match roID to Table roID , in &lt;roList&gt; case while table ID was set by setLineupList()
+      if(params.getValue("ROTable" + x +".0" + ".roID", 0) == xml.roID ){tableIndex = (x).toString();  }  
+      }        
+
+   if(tableIndex==''){               // If &lt;roCreate&gt; recieved (no such tableIndex it tables) - find empty table,   
+    for (x = 1; x &lt; 7; x++) {  
+       if(params.getValue("ROTable" + x +".0" + ".roID", 0) == ''){
+          tableIndex = (x).toString(); 
+          params.setValue("ROTable" + x +".0" + ".roID",0,xml.roID);
+          ogscript.rename('table'+tableIndex,xml.roSlug)
+          break;  
+       }   
+     }    
+   } 
+   params.setAllValues('ROTable'+tableIndex, empty); //reset table 
+   roStory = xml.storyNode;       
+   for(i=0;i&lt;roStory.length;i++){
+     
+      storyID    = roStory.item(i).getElementsByTagName("storyID").item(0);
+      storySlug  = roStory.item(i).getElementsByTagName("storySlug").item(0);
+      storyNum = roStory.item(i).getElementsByTagName("storyNum").item(0);
+      
+      if(storyID!==null)    {storyID=storyID.getTextContent();}     else   { storyID=''; }    // Those condition makes sure 
+      if(storySlug!==null)  {storySlug=storySlug.getTextContent();} else   { storySlug=''; }  // that if there is no such values in slug, 
+      if(storyNum!==null)   {storyNum=storyNum.getTextContent();}   else   { storyNum=''; }   // it will fill the cells with blank 
+      
+      createNewTableRow(storySlug,storyNum,storyID,tableIndex,xml.roID);
+     
+      } 
+   //This will set lineupLoad object to last storyId - so we know that if lineupLoad!== '', the lineup is loading.
+   ogscript.putObject('lineupLoad',params.getValue("ROTable" + tableIndex +"." + (i-1) + ".storyID", 0)); 
+   if(eventType!=='roCreate'){ogscript.asyncExec(sendRoReq,1000);}else{ack(xml);}
+   
+      }   
+
+
+function deleteRO(xml){ //triggered by &lt;roDelete&gt;
+   //ogscript.debug('deleteRO');     
+   for (x = 1; x &lt; 7; x++) { if(params.getValue("ROTable" + x +".0" + ".roID", 0) == xml.roID ){var tableIndex = (x).toString();  }   } 
+   params.setAllValues('ROTable'+tableIndex, empty); 
+   ogscript.rename('table'+tableIndex,''); 
+   ack(xml);
+   }
+
+
+
+
+//-------------------------------------------------------- S L U G   R E O R D E R triggered by &lt;storyMoveEvent&gt; -  -------------------------------------------------
+
+function roStoryMoveEvent(xml){
+   var structCount,storyID,srcIndex,dstIndex,srcNewValue,dstNewValue,tableIndex;
+   //ogscript.debug('roStoryMoveEvent');   
+   //find the table with reported roID
+   for (x = 1; x &lt; 7; x++) {   if(params.getValue("ROTable" + x +".0" + ".roID", 0) == xml.roID ){tableIndex = (x).toString();  }   } 
+   
+   if(tableIndex!==undefined&amp;&amp;params.getElementCount('ROTable'+tableIndex)&gt;1){           // if we found table with same roID as in the message, else just send ack.       
+      
+      structCount = params.getElementCount('ROTable'+tableIndex);  
+      // Create srcNewValue and dstNewValue objects with copy of all src and dst cells data
+      for(i=0;i&lt;structCount;i++){ 
+         storyID = params.getValue('ROTable'+tableIndex +'.' + i + '.storyID', 0);
+         
+         if(storyID==xml.storyID0){ srcIndex =i;   
+           srcNewValue = rowBuilder(tableIndex,srcIndex,xml.roID,storyID); //this is object with -=channel,available,video,storySlug,storyNum,storyID,roID,loop,source=- properties
+           }
+                 
+         if(storyID==xml.storyID1){  dstIndex =i; 
+           dstNewValue = rowBuilder(tableIndex,dstIndex,xml.roID,storyID); //this is object with -=channel,available,video,storySlug,storyNum,storyID,roID,loop,source=- properties
+           }  
+           }
+       
+      swapItems(srcIndex,srcNewValue,dstIndex,dstNewValue,tableIndex,xml.roID,structCount,xml);
+       
+      } else { ack(xml); }   
+   }
+
+//params.setValue("ROTable" + x +".0" + ".roID",0,roID);
+function setValue(tableIndex,index,rowObject){
+   params.setValue("ROTable" + tableIndex +"." + index + ".channel",0,rowObject.channel); 
+   params.setValue("ROTable" + tableIndex +"." + index + ".available",0,rowObject.available);
+   params.setValue("ROTable" + tableIndex +"." + index + ".video",0,rowObject.video); 
+   params.setValue("ROTable" + tableIndex +"." + index + ".storySlug",0,rowObject.storySlug);
+   params.setValue("ROTable" + tableIndex +"." + index + ".storyNum",0,rowObject.storyNum);
+   params.setValue("ROTable" + tableIndex +"." + index + ".storyID",0,rowObject.storyID);
+   params.setValue("ROTable" + tableIndex +"." + index + ".roID",0,rowObject.roID); 
+   params.setValue("ROTable" + tableIndex +"." + index + ".loop",0,rowObject.loop);
+   params.setValue("ROTable" + tableIndex +"." + index + ".source",0,rowObject.source); 
+   params.setValue("ROTable" + tableIndex +"." + index + ".cue",0,rowObject.cue); 
+   }
+
+
+function swapItems(srcIndex,srcNewValue,dstIndex,dstNewValue,tableIndex,roID,structCount,xml){
+   //ogscript.debug('swapItems'); 
+   var selectionStoryID = params.getValue('ROTable'+tableIndex +'.' + params.getValue('selected'+tableIndex, 0) + '.storyID', 0);           
+   if (srcIndex&lt;dstIndex){
+
+   for(i=srcIndex; i &lt; dstIndex; i++){
+     var storyID = params.getValue('ROTable'+tableIndex +'.' + (i+1) + '.storyID', 0); 
+     var newValue = rowBuilder(tableIndex,(i+1),roID,storyID);
+     //params.setValue('ROTable' + tableIndex, i, newValue);
+     setValue(tableIndex,i,newValue);//new
+   } 
+   //params.setValue('ROTable' + tableIndex, dstIndex-1, srcNewValue);
+   setValue(tableIndex,dstIndex-1,srcNewValue); //new
+   selection(structCount, selectionStoryID,tableIndex);
+      }
+
+   if (srcIndex&gt;dstIndex){
+
+   for(i=srcIndex; i &gt; dstIndex; i--){    // src:3 , dst: 1
+     var storyID = params.getValue('ROTable'+tableIndex +'.' + (i-1) + '.storyID', 0);
+     var newValue = rowBuilder(tableIndex,(i-1),roID,storyID);
+     //params.setValue('ROTable' + tableIndex, i, newValue);
+     setValue(tableIndex,i,newValue);//new
+   } 
+   //params.setValue('ROTable' + tableIndex, dstIndex, srcNewValue);
+   setValue(tableIndex,dstIndex,srcNewValue);//new
+   selection(structCount, selectionStoryID,tableIndex); 
+   
+      }
+
+   if (dstIndex==undefined){
+
+   for(i=srcIndex; i &lt; structCount-1; i++){
+     var storyID = params.getValue('ROTable'+tableIndex +'.' + (i+1) + '.storyID', 0);
+     var newValue = rowBuilder(tableIndex,(i+1),roID,storyID);
+     //params.setValue('ROTable' + tableIndex, i, newValue);
+     setValue(tableIndex,i,newValue);//new
+     
+   } 
+   //params.setValue('ROTable' + tableIndex, structCount-1, srcNewValue);
+   setValue(tableIndex,structCount-1,srcNewValue);//new
+   selection(structCount, selectionStoryID,tableIndex); 
+      }
+   
+   ack(xml);  
+   }
+
+
+function roStoryAppendEvent(xml){
+   //ogscript.debug('roStoryAppendEvent');   
+   for (x = 1; x &lt; 7; x++) { if (params.getValue("ROTable" + x +".0" + ".roID", 0) == xml.roID )  {var tableIndex = (x).toString();  }  }  
+   var structCount = params.getElementCount('ROTable'+tableIndex); 
+   var selectionStoryID = params.getValue('ROTable'+tableIndex +'.' + params.getValue('selected'+tableIndex, 0) + '.storyID', 0);              
+   if(tableIndex!==undefined&amp;&amp;structCount&gt;1){       //If we found table with roID, else just ack          
+      var newObject = {"channel": "","available": "" ,"video": "","storySlug": xml.storySlug ,"storyNum": xml.storyNum,"storyID": xml.storyID0,"roID":xml.roID,"loop":"","source":"","cue":"" };
+      params.setValue('ROTable' + tableIndex, structCount, newObject); 
+      selection(structCount, selectionStoryID,tableIndex);
+      }       
+   ack(xml);     
+}
+
+
+function roStoryReplaceEvent(xml){
+   //ogscript.debug('roStoryReplaceEvent');   
+   for (x = 1; x &lt; 7; x++) { if (params.getValue("ROTable" + x +".0" + ".roID", 0) == xml.roID )  {var tableIndex = (x).toString();  }  }  
+   var structCount = params.getElementCount('ROTable'+tableIndex);     
+   if(tableIndex!==undefined&amp;&amp;structCount&gt;1){ //If we found table with roID, else just ack    
+      var storyID;
+      for(i=0;i&lt;structCount;i++){   //find position index of replaced story
+         storyID = params.getValue('ROTable'+tableIndex +'.' + i + '.storyID', 0);      
+         if(storyID==xml.storyID0){
+            params.setValue("ROTable" + tableIndex + "." + i + ".storyID",0, xml.storyID1);    // Set new values      
+            params.setValue("ROTable" + tableIndex + "." + i + ".storySlug",0, xml.storySlug); // for replaced       
+            params.setValue("ROTable" + tableIndex + "." + i + ".storyNum",0, xml.storyNum);   // story    
+              }        
+           }
+        }
+   ogscript.debug('roStoryReplaceEvent done');     
+   ack(xml);     
+     }
+
+
+function roStoryInsertEvent(xml){
+   //ogscript.debug('roStoryInsertEvent');   
+   var tableIndex,index,newValue; 
+
+   for (x = 1; x &lt; 7; x++) { if (params.getValue("ROTable" + x +".0" + ".roID", 0) == xml.roID )  {tableIndex = (x).toString();  }  } 
+   var selectionStoryID = params.getValue('ROTable'+tableIndex +'.' + params.getValue('selected'+tableIndex, 0) + '.storyID', 0);         
+   var structCount = params.getElementCount('ROTable'+tableIndex);      
+   if(tableIndex!==undefined&amp;&amp;structCount&gt;1){ //If we found table with roID, else just ack    
+      ogscript.debug('structCount: ' + structCount);
+      for(i=0;i&lt;structCount;i++){   //find insert position index
+         storyID = params.getValue('ROTable'+tableIndex +'.' + i + '.storyID', 0);      
+         if(storyID==xml.storyID0){index =i;break; }        
+       }
+
+      for(i=structCount-1; i&gt;index-1 ;i--){ 
+         storyID = params.getValue('ROTable'+tableIndex +'.' + i + '.storyID', 0);
+         newValue = rowBuilder(tableIndex,i,xml.roID,storyID);
+         params.setValue('ROTable' + tableIndex, i+1, newValue);               
+         }
+      
+      var xx = {"channel": "","available": "" ,"video": "","storySlug": xml.storySlug ,"storyNum": xml.storyNum,"storyID": xml.storyID1,"roID":xml.roID,"loop":"","source":"","cue":"" };
+  
+      params.setValue('ROTable' + tableIndex, index, xx); 
+      selection(structCount, selectionStoryID,tableIndex);
+      }       
+   ack(xml);
+   
+}
+
+   
+function storyDeleteEvent (xml){
+  
+   //ogscript.debug('storyDeleteEvent');        
+   for (x = 1; x &lt; 7; x++) { if (params.getValue("ROTable" + x +".0" + ".roID", 0) == xml.roID )  {var tableIndex = x;  }  } 
+    
+   var structCount = params.getElementCount('ROTable'+tableIndex);     
+   var selectionStoryID = params.getValue('ROTable'+tableIndex +'.' + params.getValue('selected'+tableIndex, 0) + '.storyID', 0);         
+   if(tableIndex!==undefined&amp;&amp;structCount&gt;1){ //If we found table with roID, else just ack      
+      // find deletedID row in table
+      for(i=0;i&lt;structCount;i++){         
+         
+         if(params.getValue("ROTable" + tableIndex +"." + i + ".storyID", 0) == xml.storyID0){
+            params.setValue('selected1', 0, i);
+            params.getParam('ROTable'+tableIndex, i).remove();
+            break;            
+         
+         }
+      } 
+      selection(structCount, selectionStoryID,tableIndex);  
+   }  
+   ack(xml);
+}
+
+
+function selection(structCount, selectionStoryID,tableIndex){
+   for(i=0;i&lt;structCount+1;i++){
+   if(selectionStoryID == params.getValue('ROTable'+tableIndex +'.' + i + '.storyID', 0) ){ 
+      params.setValue('selected'+ tableIndex, 0, i); 
+      break;
+      }
+   }     
+}</api>
+      <api name="glossary">function resetRoID(){
+   //ogscript.debug('resetRoID');
+   for (i = 1; i &lt; 7; i++) {
+      params.setValue("ROTable" + i +".0" + ".roID",0,"");
+      ogscript.rename('table'+i, '');
+     }  
+     } 
+
+function resetTables(){
+   //ogscript.debug('resetTables');
+   for (i = 1; i &lt; 7; i++){
+   params.setAllValues('ROTable'+i, empty);
+   }
+}
+
+function dynamicTable(tableIndex){
+   //ogscript.debug('dynamicTable');
+   ogscript.putObject('activeTable',tableIndex);
+   //style="bdr#modaloverlay;bdr:thick;bg#textbg;"
+   var textSize = 18;
+   //var start = '&lt;param evenstyle="txt-align:east;size:' + textSize + '" expand="true" style="bg#textbg;" height="860" id="" left="0" oddstyle="txt-align:east;size:' + textSize + '" oid="ROTable'  + tableIndex; 
+   var start = '&lt;param evenstyle="txt-align:east;size:' + textSize + '" expand="true" style="bg#textbg;brd:none" height="880" id="" left="1" oddstyle="txt-align:east;size:' + textSize + '" oid="ROTable'  + tableIndex; 
+   var start2 = '" showlabel="false" top="0" width="1200"&gt;size:Big';     
+   var config1 = '&lt;config key="w.selectionparam"&gt;selected' + tableIndex + '&lt;/config&gt;';  
+   var config2 = '&lt;config key="w.cellediting"&gt;false&lt;/config&gt;&lt;config key="w.columns"&gt;channel,cue,available,loop,video,source,storySlug,storyNum&lt;/config&gt;';   
+   var config3 = '&lt;config key="w.padding"&gt;0,17&lt;/config&gt;&lt;config key="w.showheader"&gt;false&lt;/config&gt;';
+   var config4 = '&lt;config key="w.colminwidth.0"&gt;40&lt;/config&gt;&lt;config key="w.colminwidth.1"&gt;60&lt;/config&gt;&lt;config key="w.colminwidth.2"&gt;130&lt;/config&gt;&lt;config key="w.colminwidth.3"&gt;80&lt;/config&gt;&lt;config key="w.colminwidth.4"&gt;400&lt;/config&gt;';
+   
+   var config44= '&lt;config key="w.colminwidth.5"&gt;90&lt;/config&gt;&lt;config key="w.colminwidth.6"&gt;320&lt;/config&gt;&lt;config key="w.colminwidth.7"&gt;80&lt;/config&gt;';
+   
+   var config5 = '&lt;config key="w.rowheight"&gt;30&lt;/config&gt;&lt;config key="w.hgrid"&gt;true&lt;/config&gt;&lt;config key="w.columnlock"&gt;true&lt;/config&gt;'; ///&lt;config key="w.showheader"&gt;true&lt;/config&gt;
+   var config6 = '&lt;config key="w.vgrid"&gt;false&lt;/config&gt;&lt;config key="w.scrollselection"&gt;false&lt;/config&gt;&lt;/param&gt;';
+   return start+start2 + config1 + config2 +config3 + config4 + config44 + config5+ config6;
+   
+   }
+
+const roReqAll = '&lt;mos&gt;&lt;mosID&gt;VTR1&lt;/mosID&gt;&lt;ncsID&gt;INCEPTION&lt;/ncsID&gt;&lt;messageID&gt;&lt;/messageID&gt;&lt;roReqAll/&gt;&lt;/mos&gt;';
+
+//ack parts for &lt;roStorySend&gt;
+const mosAck0 = '&lt;mos&gt;&lt;mosID&gt;VTR1&lt;/mosID&gt;&lt;ncsID&gt;INCEPTION&lt;/ncsID&gt;&lt;messageID&gt;';
+const mosAck1 = '&lt;/messageID&gt;&lt;roAck&gt;&lt;roID&gt;';
+const mosAck2 = '&lt;/roID&gt;&lt;/roAck&gt;&lt;/mos&gt;';
+
+//************* roReq message:
+const roReq0 = '&lt;mos&gt;&lt;mosID&gt;VTR1&lt;/mosID&gt;&lt;ncsID&gt;INCEPTION&lt;/ncsID&gt;&lt;messageID&gt;';
+const roReq1 = '&lt;/messageID&gt;&lt;roReq&gt;&lt;roID&gt;';
+const roReq2 = '&lt;/roID&gt;&lt;/roReq&gt;&lt;/mos&gt;';
+
+const empty = [{"channel": "","available": "" ,"video": "","storySlug": "" ,"storyNum": "","storyID": "","roID":"","loop":"","source":"","cue":"" }];
+
+
+ogscript.putObject('ackCount', 1);
+ogscript.putObject('roList', null);
+ogscript.putObject('ROCounter', 0);
+params.setValue('led', 0, '&lt;#red&gt;')
+params.setValue('led2', 0, '&lt;#red&gt;')
+resetTables();
+resetRoID();
+params.setValue('playerA.cueName', 0, '');
+params.setValue('playerB.cueName', 0, '');
+params.setValue('playerC.cueName', 0, '');
+params.setValue('playerD.cueName', 0, '');
+params.setValue('playerE.cueName', 0, '');
+params.setValue('playerF.cueName', 0, '');
+
+function labelUpdate(ledIndex){
+   
+   if (ledIndex == "led"||ledIndex == "led2"){
+         if (params.getValue('led', 0)==params.getValue('led2', 0)){ogscript.setStyle('label.nrcs', params.getValue('led', 0));} else { ogscript.setStyle('label.nrcs', 'bg#BBC037'); }   }
+         
+   if (ledIndex == 'k21'){ ogscript.setStyle('label.k21', params.getValue('ledK21', 0));  }      
+   if (ledIndex == 'k22'){ ogscript.setStyle('label.k22', params.getValue('ledK22', 0));  }            
+
+}</api>
+      <api name="onload K2">//commands to K2
+const listFirstFolderALIAS       = 'CMDS0004A02A' + '\n';
+const listNextFoldersALIAS       = 'CMDS0004A02B' + '\n';
+const listFirstIdALIAS           = 'CMDS0008A2140000' + '\n';
+const listNextIdALIAS            = 'CMDS0006a115FF' + '\n';
+const getWorkingBinALIAS         = 'CMDS0004A00F' + '\n';
+const getIdCountALIAS            = 'CMDS0004A026' + '\n';
+const IDsChangeListReqALIAS      = 'CMDS0004A012' + '\n';
+const setDefaultBinALIAS         = 'CMDS0026a20e0009000764656661756c74' + '\n';
+const vtr1Connection             = 'CRAT0007204Vtr1\n';  
+const vtr2Connection             = 'CRAT0007204Vtr2\n';            
+const vtr3Connection             = 'CRAT0007204Vtr3\n';                      
+const stopALIAS                  = 'STOP0000\n';
+const loopON                     = 'CMDS0006414201' + '\n';
+const loopOFF                    = 'CMDS0006414200' + '\n';
+const playON                     = 'CMDS00042001' + '\n';
+const stop                       = 'CMDS00042000' + '\n';
+const eject                      = 'CMDS0004200F' + '\n';
+const autoModeON                 = 'CMDS00044041' + '\n';
+//returns
+const setBinALIAS                = 'a20e';
+const eraseIdALIAS               = 'aa10';
+const ackALIAS                   = "1001";
+const nakALIAS                   = "1111";
+const error                      = "1112";
+const listFirstFolderReturnALIAS = '822a';
+const listNextFolderReturnALIAS  = '822b';
+const binListCompleteALIAS       = '802b';
+const idReturnALIAS              = '8a14';
+const noMoreIdALIAS              = '8014';
+const IdInfoReturnALIAS          = '8a13';
+const IDsChangelistReturnALIAS   = '8213';
+
+const cueIcon = '&lt;style:fg#000000;i-u:images/cue.svg;&gt;'; 
+const playIcon = '&lt;style:fg#27D10D;i-u:images/play.svg;&gt;'; 
+const redBackground = 'N/A       &lt;bg#A92121&gt;';
+
+const emptyArr = [];                                 // blank string for reset clips object
+const plzConnect = ['please connect'];
+ogscript.putObject('idStatusCounter1',empty);    // reset idstatus object  
+ogscript.putObject('idStatusCounter2',empty);    // reset idstatus object  
+
+ogscript.putObject('busy1', 0);                  // reset busy flag  
+ogscript.putObject('busy2', 0);                  // reset busy flag  
+
+params.setValue('ledK21', 0, '&lt;#red&gt;');
+params.setValue('ledK22', 0, '&lt;#red&gt;');
+
+ogscript.putObject('K21vtr1',null);     
+ogscript.putObject('K22vtr1',null);     
+
+ogscript.putObject('binList22',emptyArr);               
+ogscript.putObject('binList21',emptyArr);
+ogscript.putObject('clips22',emptyArr);               
+ogscript.putObject('clips21',emptyArr);
+params.setAllValues('clipTable', [{'clipname':'', 'available':''}]);
+
+var x = params.createIntChoiceConstraint(plzConnect);
+params.replaceConstraint("binList", x);
+params.setValue('binList', 0, 0);</api>
+      <api name="K2 both msg router">function messageRouterK21(msg){
+   //ogscript.debug('recieved msg from k21: ' + msg );
+   
+   if (msg.slice(0,4) == listFirstFolderReturnALIAS){ list1Folder21(msg.slice(8));  }                                        // first folder return (822a) 
+   if (msg.slice(0,4) == listNextFolderReturnALIAS) { listNextBin21(msg.slice(8));  }                                        // next folder return (822b)
+   if (msg == binListCompleteALIAS)                 { binListFinilize21();         }                                         // folder list comlete (802b)
+   if (msg.slice(0,4) == idReturnALIAS  )           { nextId21(msg.slice(8));ogscript.putObject('ack21','');  }              // ID list (or single if it is the first id) return (8a14) 
+   if (msg == noMoreIdALIAS)                        { ogscript.putObject('ack21',''); clipListFinilize();autoModeOn21();   }                // No more id found (8014) 
+   if (msg.slice(0,4) == IdInfoReturnALIAS)         {dateConvertor21(msg.slice(8,24),msg.slice(40,48),msg.slice(60,68));}    // Id info return (8a13)
+   if (msg == ackALIAS &amp;&amp; ogscript.getObject('ack21') == 'setBin' ){ogscript.asyncExec(firstIdRequest21,500);ogscript.putObject('ack21','');} // if recieved ack (1001) and ack flag was from setDefaulBin
+   if (msg.slice(0,4) == IDsChangelistReturnALIAS&amp;&amp;msg.length!==8)  { IDsChangeEvent21(msg.slice(8));         }       // IDs Changed List (8213), msg.length!==8 will filter msg with no changes
+ }
+
+function messageRouterK22(msg){
+      
+   if (msg.slice(0,4) == listFirstFolderReturnALIAS){ list1Folder22(msg.slice(8));  }                                         // first folder return (822a) 
+   if (msg.slice(0,4) == listNextFolderReturnALIAS) { listNextBin22(msg.slice(8));  }                                         // next folder return (822b)
+   if (msg == binListCompleteALIAS)                 { binListFinilize22();         }                                          // folder list comlete (802b)
+   if (msg.slice(0,4) == idReturnALIAS  )           { nextId22(msg.slice(8));ogscript.putObject('ack22','');  }               // ID list (or single if it is the first id) return (8a14) 
+   if (msg == noMoreIdALIAS)                        { ogscript.putObject('ack22',''); clipListFinilize(); autoModeOn22();  }                 // No more id found (8014) 
+   if (msg.slice(0,4) == IdInfoReturnALIAS)         {dateConvertor22(msg.slice(8,24),msg.slice(40,48),msg.slice(60,68));}     // Id info return (8a13)
+   if (msg == ackALIAS &amp;&amp; ogscript.getObject('ack22') == 'setBin' ){ogscript.asyncExec(firstIdRequest22,500);ogscript.putObject('ack22','');} // if recieved ack (1001) and ack flag was from setDefaulBin
+   if (msg.slice(0,4) == IDsChangelistReturnALIAS&amp;&amp;msg.length!==8)  { IDsChangeEvent22(msg.slice(8));         }      // IDs Changed List (8213), msg.length!==8 will filter msg with no changes
+ }
+
+// AMP messages decoder to ascii names + server (TLV1/TLV2) objects array
+function dataConvertor(msg,totalLength,server){                                                      
+
+   var listAndServer = [];
+   var list = [];            
+   var itemName,i,result,x; 
+    
+   while(totalLength&gt;0){
+      result = '';
+      countAndNameNumber =  4 + parseInt(msg.slice(0,4),16) * 2;  // number of CLIPNAME-LEN + CLIP NAME
+      itemName = msg.slice( 4 , countAndNameNumber);
+      msg = msg.slice(countAndNameNumber); 
+      itemName = itemName.match(/.{1,2}/g);      // create array of hex strings
+      
+      for (i=0; i&lt;itemName.length; i++) {
+         x = parseInt(itemName[i], 16);            // convert hex to dec numbers
+         result += String.fromCharCode(x).toUpperCase();  // This will translate hex code to ascii+ to uppercase  
+      }
+   
+      listAndServer.push({name:result, server:server})  //***
+      list.push(result);
+      totalLength -= countAndNameNumber;
+      }
+    
+   return {list:list,listAndServer:listAndServer}
+            
+      }
+
+function ampMessageBuilder(string,cmdType){   //CMDS0026 a20e 0009 0007 64656661756c74
+
+   var clipNameLen = ('0000' + (string.length).toString(16)).slice(-4); 
+   var actualCountByte = ('0000' + (string.length+2).toString(16)).slice(-4);
+   var totalCmdCounter = ('0000'+(string.length*2+12).toString(10)).slice(-4); 
+   var hex = string.charCodeAt(0).toString(16);
+   
+   for (i = 1; i &lt; string.length; i++) {
+        hex += string.charCodeAt(i).toString(16);
+      } 
+   
+   return 'CMDS' + totalCmdCounter + cmdType + actualCountByte + clipNameLen + hex + '\n' ;
+  
+   }   
+
+function onlyUnique(value, index, self) {
+   return self.indexOf(value) === index;
+}
+// Clips names convertor to send to K2
+function hexToAscii(msg){                                                      
+      //ogscript.debug('convertor recieved: ' + msg);
+      var result = '';
+      var x;
+      var array = msg.match(/.{1,2}/g);            // create array of hex strings      
+      for (ii=0; ii&lt;array.length; ii++) {
+         x = parseInt(array[ii], 16);               // convert hex to dec numbers
+         result += String.fromCharCode(x);   
+      }
+   //ogscript.debug('convertor return: ' + result);     
+   return result;          
+      }</api>
+      <api name="K2 API">function firstFolderRequest21(){
+   ogscript.putObject('busy1',1);   
+   var server = ogscript.getObject('K21vtr1');
+   server.writeString(listFirstFolderALIAS, false);      
+   } 
+     
+function firstFolderRequest22(){
+   ogscript.putObject('busy2',1);   
+   var server = ogscript.getObject('K22vtr1');
+   server.writeString(listFirstFolderALIAS, false);      
+   } 
+        
+function list1Folder21(msg){   
+   var binList = dataConvertor(msg,msg.length,'');                // Pass msg to dataConvertor() and get first folder name string
+   ogscript.putObject('binList21',binList);                     // Overwrite 'binList' array object with the first folder name. 
+   nextFolderRequest21();  
+      }
+function list1Folder22(msg){   
+   var binList = dataConvertor(msg,msg.length,'');                // Pass msg to dataConvertor() and get first folder name string
+   ogscript.putObject('binList22',binList);                     // Overwrite 'binList' array object with the first folder name. 
+   nextFolderRequest22();  
+      }
+        
+function nextFolderRequest21(){
+   var server = ogscript.getObject('K21vtr1');
+   server.writeString(listNextFoldersALIAS, false);      
+   }   
+function nextFolderRequest22(){
+   var server = ogscript.getObject('K22vtr1');
+   server.writeString(listNextFoldersALIAS, false);      
+   }
+      
+function listNextBin21(msg){ 
+   var binList = ogscript.getObject('binList21').list;               // get array object with first bin name from list1Folder func.
+   binList = binList.concat(dataConvertor(msg,msg.length,'').list);   // add list returned from dataConvertor() to binList 
+   ogscript.putObject('binList21',binList); 
+   nextFolderRequest21();
+      }
+function listNextBin22(msg){
+   var binList = ogscript.getObject('binList22').list;               // get array object with first bin name from list1Folder func.
+   binList = binList.concat(dataConvertor(msg,msg.length,'').list);   // add list returned from dataConvertor() to binList 
+   ogscript.putObject('binList22',binList);      
+   nextFolderRequest22();
+      }            
+   
+function setBin21(binName){
+   ogscript.putObject('busy21',1); //  set busy flag to true     
+   var server = ogscript.getObject('K21vtr1');
+   server.writeString(ampMessageBuilder(binName,setBinALIAS), false);
+   ogscript.putObject('ack21','setBin');
+         
+   }
+
+
+function setBin22(binName){
+   
+   ogscript.putObject('busy22',1); //  set busy flag to true     
+   var server = ogscript.getObject('K22vtr1');
+   server.writeString(ampMessageBuilder(binName,setBinALIAS), false);
+   ogscript.putObject('ack22','setBin');
+         
+   }
+
+
+function setBin(channel){
+   function send(){ server.writeString(ampMessageBuilder(binName,setBinALIAS), false); }
+   var binName =params.getValue('workingBin', 0);
+   var server = ogscript.getObject(channel);
+   ogscript.asyncExec(send,150);
+   ogscript.putObject('ack22','setBin');
+         
+   }
+
+
+function firstIdRequest21(){
+   ogscript.putObject('clips21',emptyArr);  // reset clips object 
+   ogscript.putObject('busy21',1);       
+   var server = ogscript.getObject('K21vtr1');
+   server.writeString(listFirstIdALIAS, false);
+   }
+function firstIdRequest22(){   
+   ogscript.putObject('clips22',emptyArr); // reset clips object 
+   ogscript.putObject('busy22',1);       
+   var server = ogscript.getObject('K22vtr1');
+   server.writeString(listFirstIdALIAS, false);
+   }   
+
+function autoModeOn22(){  
+   ogscript.debug('automode ON'); 
+   var serverD = ogscript.getObject('K22vtr1');
+   var serverE = ogscript.getObject('K22vtr2');
+   var serverF = ogscript.getObject('K22vtr3');
+   serverD.writeString(autoModeON, false);      
+   serverE.writeString(autoModeON, false);      
+   serverF.writeString(autoModeON, false);            
+   } 
+
+function autoModeOn21(){  
+   ogscript.debug('automode ON'); 
+   var serverA = ogscript.getObject('K21vtr1');
+   var serverB = ogscript.getObject('K21vtr2');
+   var serverC = ogscript.getObject('K21vtr3');   
+   serverA.writeString(autoModeON, false);
+   serverB.writeString(autoModeON, false);      
+   serverC.writeString(autoModeON, false);      
+   
+   } 
+
+function binListFinilize21(serverDisconnect){   
+   var binList = ogscript.getObject('binList21');               // get array object with first bin name from list1Folder func.
+   var binList22 = ogscript.getObject('binList22');
+   binList = binList.concat(binList22); 
+   var choiceConstraint = params.createIntChoiceConstraint(binList.filter(onlyUnique));
+   params.replaceConstraint("binList", choiceConstraint);
+   if(serverDisconnect!==true){setBin21(params.getValue('workingBin', 0));}
+              
+   }  
+function binListFinilize22(serverDisconnect){   
+   var binList = ogscript.getObject('binList22');               // get array object with first bin name from list1Folder func.
+   var binList21 = ogscript.getObject('binList21');
+   binList = binList.concat(binList21); 
+   var choiceConstraint = params.createIntChoiceConstraint(binList.filter(onlyUnique));
+   params.replaceConstraint("binList", choiceConstraint);
+   if(serverDisconnect!==true){setBin22(params.getValue('workingBin', 0)); ogscript.debug('22:fired setBin ' + params.getValue('workingBin', 0));}                                         // this will copy the list also to binListCopy parameter
+              
+   }     
+
+function nextIdRequest21(){  
+   var server = ogscript.getObject('K21vtr1');
+   server.writeString(listNextIdALIAS, false);      
+   }
+function nextIdRequest22(){
+   var server = ogscript.getObject('K22vtr1');
+   server.writeString(listNextIdALIAS, false);      
+   }   
+
+function nextId21(msg){
+   var clips = ogscript.getObject('clips21');                                                 // get array object with first bin name from list1Folder func.
+   clips = clips.concat(dataConvertor(msg,msg.length,params.getValue('K2Primary', 0)).listAndServer);       // add list returned from dataConvertor() to binList 
+   ogscript.putObject('clips21',clips);        
+   nextIdRequest21();
+   }
+function nextId22(msg){
+   var clips = ogscript.getObject('clips22');                   // get array object with first bin name from list1Folder func.
+   clips = clips.concat(dataConvertor(msg,msg.length,params.getValue('K2Secondary', 0)).listAndServer);       // add list returned from dataConvertor() to binList 
+   ogscript.putObject('clips22',clips); 
+   nextIdRequest22();
+   }
+
+
+// This is main function that recieve and merge cliplists from 2 K2 servers
+function clipListFinilize(){
+   
+   var clips21 = ogscript.getObject('clips21');                                                            // get object with all cliplist from server 21.
+   var clips22 = ogscript.getObject('clips22');                                                            // get object with all cliplist from server 22.
+   var skip = 0;  var list = []; 
+  // params.setAllValues('clipTable', [{'clipname':'', 'available':''}]);
+   
+   //Loop for each clips21 array and match it with each clips22 element
+   for(i=0; clips21.length&gt;i; i++){        
+      skip = 0;   
+      for(ii=0; clips22.length&gt;ii; ii++){                                                                            
+         if(clips21[i].name == clips22[ii].name){                                                                    
+           list.push({clipname:clips21[i].name,'available': clips21[i].server + "," + clips22[ii].server}); // clip exists on both servers
+           skip = 1;
+           break;
+            }   
+         }          
+      if(skip == 0){ list.push({clipname:clips21[i].name,'available': clips21[i].server}); }                // clip exist only on server 21        
+      }
+   
+   // now we need to find out only uniq clips22 items
+   for(i=0; clips22.length&gt;i; i++){      
+      skip = 0;
+      for(ii=0; clips21.length&gt;ii; ii++){                                                                             
+         if(clips22[i].name == clips21[ii].name){                                                                    
+           skip = 1;
+            }   
+         }      
+      if(skip == 0){ list.push({clipname:clips22[i].name,'available': clips22[i].server}); }                // clip exist only on server 22 
+      }
+   // This will sort the final items 
+   list.sort(function(a, b){
+   var x = a.clipname.toLowerCase();
+   var y = b.clipname.toLowerCase();
+   if (x &lt; y) {return -1;}
+   if (x &gt; y) {return 1;}
+   return 0;
+   });
+  
+   params.setAllValues("clipTable", list);      
+   ogscript.putObject('busy21',0);          // reset busy object 
+   ogscript.putObject('busy22',0);          // reset busy object        
+   //matchLists();
+   }
+
+
+
+function IDsChangeEvent21(msg){
+   
+   var volumeNamelength = parseInt(msg.slice(0,4),16);           msg = msg.slice(4);
+   var volumeName=msg.slice(0,volumeNamelength * 2);             msg = msg.slice(volumeNamelength * 2);  
+   var folderNameLen = parseInt(msg.slice(0,4),16);              msg = msg.slice(4);
+   var folderName = hexToAscii(msg.slice(0,folderNameLen*2));    msg = msg.slice(folderNameLen * 2);  
+   var clipChangedCounter = parseInt(msg.slice(0,2),16);         msg = msg.slice(2);
+   var eventType,clipLen,clipName;
+      
+   for(a=0;a&lt;clipChangedCounter;a++){                  
+      eventType = msg.slice(0,4);
+      clipLen = parseInt(msg.slice(4,8),16);     
+      clipName = hexToAscii(msg.slice(8,clipLen*2+8));
+      if (eventType == '0001'){ clipsUpdate(folderName,clipName.toUpperCase(),'add','21','K2Primary');}
+      if (eventType == '0002'){ clipsUpdate(folderName,clipName.toUpperCase(),'remove','21','K2Primary');} 
+      msg = msg.slice(8+clipLen*2);       
+      }
+   if(msg.length&gt;0){IDsChangeEvent21(msg);}        
+}
+function IDsChangeEvent22(msg){
+   ogscript.debug('22:recieved msg: ' + msg);  
+   var volumeNamelength = parseInt(msg.slice(0,4),16);           msg = msg.slice(4);
+   var volumeName=msg.slice(0,volumeNamelength * 2);             msg = msg.slice(volumeNamelength * 2);  
+   var folderNameLen = parseInt(msg.slice(0,4),16);              msg = msg.slice(4);
+   var folderName = hexToAscii(msg.slice(0,folderNameLen*2));    msg = msg.slice(folderNameLen * 2);  
+   var clipChangedCounter = parseInt(msg.slice(0,2),16);         msg = msg.slice(2);
+   var eventType,clipLen,clipName;
+      
+   for(a=0;a&lt;clipChangedCounter;a++){                  
+      eventType = msg.slice(0,4);
+      clipLen = parseInt(msg.slice(4,8),16);     
+      clipName = hexToAscii(msg.slice(8,clipLen*2+8));
+      if (eventType == '0001'){ clipsUpdate(folderName,clipName.toUpperCase(),'add','22','K2Secondary');}
+      if (eventType == '0002'){ clipsUpdate(folderName,clipName.toUpperCase(),'remove','22','K2Secondary');} 
+      msg = msg.slice(8+clipLen*2);       
+      }
+   if(msg.length&gt;0){IDsChangeEvent22(msg);}        
+}
+
+function clipsUpdate(bin,name,type,server,serverParam){
+   ogscript.debug('bin: '+bin+ 'name: '+name+ 'type: '+type+'server: '+server+'serverParam: '+ serverParam);
+   var list = ogscript.getObject('clips' + server);                            // get object with all cliplist from server (21 or 22).
+   
+   if(type == 'add'&amp;&amp;bin == params.getValue('workingBin', 0)){
+      list.push({'name' : name, 'server' : params.getValue(serverParam, 0)});
+      ogscript.putObject('clips'+server,list);
+      matchListToKnownK2clip(name,params.getValue(serverParam, 0));
+      ogscript.rename('bar',params.getValue(serverParam, 0) + ': ADDED '  + name)  
+      clipListFinilize(); 
+      }
+    
+   if(type == 'remove'&amp;&amp;bin == params.getValue('workingBin', 0)){
+      
+      for(i=0;i&lt;list.length;i++){
+         
+         if(list[i].name == name){
+            
+            list.splice(i,1);   // js splice: first parameter define index of element, the second one homa many elements to remove 
+            ogscript.putObject('clips'+server,list);
+            ogscript.rename('bar',params.getValue(serverParam, 0) + ': REMOVED '  + name)  
+            clipListFinilize();
+            ogscript.asyncExec(matchLists,300);            
+         }     
+      }
+   }    
+}</api>
+      <api name="K2 NRCS">function loop(){
+   
+   var activeTable = ogscript.getObject('activeTable');   
+   var selected = params.getValue('selected' + activeTable, 0);
+   var loopIcon='&lt;style:fg#000000;i-u:images/loop.svg;&gt;';
+   var status = params.getValue("ROTable" + activeTable +  "." + selected + ".loop",0);
+   var cueStatus = params.getValue("ROTable" + activeTable +  "." + selected + ".cue",0);
+
+   if (status==''){
+      params.setValue("ROTable" + activeTable + "." + selected + ".loop",0, loopIcon); //turn on loop icon from table
+      
+      // if loop was pressed while clip is on play status (and loop icon is off)
+      if(cueStatus==playIcon){
+         var server,channelNum;
+         var channel =   params.getValue("ROTable" + activeTable +  "." + selected + ".channel",0);
+         if(channel==' A'||channel==' D'){channelNum=1}if(channel==' B'||channel==' E'){channelNum=2}if(channel==' C'||channel==' F'){channelNum=3}  
+         if(channel==' A'||channel==' B'||channel==' C'){server = '1';}
+         if(channel==' D'||channel==' E'||channel==' F'){server = '2';}   
+         var player = ogscript.getObject('K2' + server + 'vtr' + channelNum); 
+         player.writeString(loopON, false);         
+         }
+      
+      }else{
+         
+      params.setValue("ROTable" + activeTable + "." + selected + ".loop",0, ''); //turn off loop icon from table
+      
+      // if loop was pressed while clip is on play status (and loop icon is on)
+         if(cueStatus==playIcon){
+            var server,channelNum;
+            var channel =   params.getValue("ROTable" + activeTable +  "." + selected + ".channel",0);
+            if(channel==' A'||channel==' D'){channelNum=1}if(channel==' B'||channel==' E'){channelNum=2}if(channel==' C'||channel==' F'){channelNum=3}  
+            if(channel==' A'||channel==' B'||channel==' C'){server = '1';}
+            if(channel==' D'||channel==' E'||channel==' F'){server = '2';}   
+            var player = ogscript.getObject('K2' + server + 'vtr' + channelNum); 
+            player.writeString(loopOFF, false);
+            
+      }
+   }   
+}
+
+
+function vtrAssign(event){
+      
+   var state = event.getState();
+   var activeTable = ogscript.getObject('activeTable');   
+   var selected = params.getValue('selected' + activeTable, 0); 
+   var video =  params.getValue("ROTable" + activeTable +  "." + selected + ".video",0);   
+   var value;
+   if(video!=''){
+   if(state==1){value=' A'}if(state==2){value=' B'}if(state==3){value=' C'}if(state==4){value=' D'}if(state==5){value=' E'}if(state==6){value=' F'}
+   var status = params.getValue("ROTable" + activeTable +  "." + selected + ".channel",0);
+   
+   if (status==value){
+      params.setValue("ROTable" + activeTable + "." + selected + ".channel",0, '');   // story  
+      }else{
+      params.setValue("ROTable" + activeTable + "." + selected + ".channel",0, value);   // story     
+         }
+      }
+   }
+
+
+function cue(){
+   var channelNum,server;
+   var server1Name = params.getValue('K2Primary', 0);
+   var server2Name = params.getValue('K2Secondary', 0);
+   var activeTable = ogscript.getObject('activeTable');   
+   var selected = params.getValue('selected' + activeTable, 0);
+   var cueIcon='&lt;style:fg#000000;i-u:images/cue.svg;&gt;';
+   var lineupCount = params.getElementCount('ROTable'+activeTable);      
+   var loop =      params.getValue("ROTable" + activeTable +  "." + selected + ".loop",0);
+   var video =     params.getValue("ROTable" + activeTable +  "." + selected + ".video",0);   
+   var channel =   params.getValue("ROTable" + activeTable +  "." + selected + ".channel",0);
+   var available = params.getValue("ROTable" + activeTable +  "." + selected + ".available",0);  
+   if(channel==' A'||channel==' D'){channelNum=1}if(channel==' B'||channel==' E'){channelNum=2}if(channel==' C'||channel==' F'){channelNum=3}  
+   if(channel==' A'||channel==' B'||channel==' C'){server = '1';}
+   if(channel==' D'||channel==' E'||channel==' F'){server = '2';}   
+   var player = ogscript.getObject('K2' + server + 'vtr' + channelNum); 
+   
+   //if the file exists on both servers
+   if (video!=''&amp;&amp;channel!=''&amp;&amp;available==server1Name + ',' + server2Name){
+      params.setValue("ROTable" + activeTable + "." + selected + ".cue",0, cueIcon);   // set cue icon
+      player.writeString(ampMessageBuilder('V:/' + params.getValue('workingBin', 0) + '/' + video,'4a14'), false);
+      params.setValue('player' + channel.slice(-1) + '.cueName', 0, video);   // set video name on player 
+      if (loop == ''){ player.writeString(loopOFF, false);} else {player.writeString(loopON, false);}
+      for (i=0;i&lt;lineupCount;i++){
+         // This will find and cleanup prev cue on the same channel
+         if (channel == params.getValue("ROTable" + activeTable +  "." + i + ".channel",0)&amp;&amp;i!=selected){ 
+            params.setValue("ROTable" + activeTable + "." + i + ".cue",0, ''); 
+            }         
+         }
+      }
+   
+   //if the file exists on only on primaryserver
+   if (video!=''&amp;&amp;channel!=''&amp;&amp;available==server1Name){
+      if(server == '1'){
+         params.setValue("ROTable" + activeTable + "." + selected + ".cue",0, cueIcon);   // set cue icon
+         player.writeString(ampMessageBuilder('V:/' + params.getValue('workingBin', 0) + '/' + video,'4a14'), false);
+         params.setValue('player' + channel.slice(-1) + '.cueName', 0, video);   // set video name on player 
+         if (loop == ''){ player.writeString(loopOFF, false);} else {player.writeString(loopON, false);}
+         for (i=0;i&lt;lineupCount;i++){
+            // This will find and cleanup prev cue on the same channel
+            if (channel == params.getValue("ROTable" + activeTable +  "." + i + ".channel",0)&amp;&amp;i!=selected){params.setValue("ROTable" + activeTable + "." + i + ".cue",0, ''); }            
+            }
+         }
+      }
+
+   //if the file exists on only on secondary server
+   if (video!=''&amp;&amp;channel!=''&amp;&amp;available==server2Name){
+      if(server == '2'){
+         params.setValue("ROTable" + activeTable + "." + selected + ".cue",0, cueIcon);   // set cue icon
+         player.writeString(ampMessageBuilder('V:/' + params.getValue('workingBin', 0) + '/' + video,'4a14'), false);
+         params.setValue('player' + channel.slice(-1) + '.cueName', 0, video);   // set video name on player    
+         if (loop == ''){ player.writeString(loopOFF, false);} else {player.writeString(loopON, false);}
+         for (i=0;i&lt;lineupCount;i++){
+            // This will find and cleanup prev cue on the same channel
+            if (channel == params.getValue("ROTable" + activeTable +  "." + i + ".channel",0)&amp;&amp;i!=selected){params.setValue("ROTable" + activeTable + "." + i + ".cue",0, ''); }            
+            }
+         }
+      }   
+   }
+
+
+function play(){
+  
+   var channelNum,server;
+   var activeTable = ogscript.getObject('activeTable');   
+   var selected = params.getValue('selected' + activeTable, 0);
+   
+   var lineupCount = params.getElementCount('ROTable'+activeTable);      
+   var channel =   params.getValue("ROTable" + activeTable +  "." + selected + ".channel",0);
+   var available = params.getValue("ROTable" + activeTable +  "." + selected + ".available",0);
+   var video =     params.getValue("ROTable" + activeTable +  "." + selected + ".video",0);   
+   var cueStatus = params.getValue("ROTable" + activeTable +  "." + selected + ".cue",0);   
+   if(channel==' A'||channel==' D'){channelNum=1}if(channel==' B'||channel==' E'){channelNum=2}if(channel==' C'||channel==' F'){channelNum=3}  
+   if(channel==' A'||channel==' B'||channel==' C'){server = '1';}
+   if(channel==' D'||channel==' E'||channel==' F'){server = '2';}
+   var player = ogscript.getObject('K2' + server + 'vtr' + channelNum); 
+   
+   if (video!=''&amp;&amp;channel!=''&amp;&amp;available!=''&amp;&amp;cueStatus==cueIcon){
+      ogscript.debug('play');
+      params.setValue("ROTable" + activeTable + "." + selected + ".cue",0, playIcon);   // set play icon
+      player.writeString(playON, false);  
+
+      // This will find and cleanup prev cue on the same channel
+      for (i=0;i&lt;lineupCount;i++){         
+         if (channel == params.getValue("ROTable" + activeTable +  "." + i + ".channel",0)&amp;&amp;i!=selected){ 
+            params.setValue("ROTable" + activeTable + "." + i + ".cue",0, ''); 
+            }         
+         }
+      }
+   params.setValue('selected'+ activeTable, 0, selected +1);
+
+   }
+
+
+function matchLists(){
+   var K2Available,K2Video,inceptionVideo,inceptionAvailable;
+   var K2ListCount = params.getElementCount('clipTable');             // constant list 
+   var flag = false;
+
+   //loop thru all 6 possible lineups   
+   for (x = 1; x &lt; 7; x++) {                                                
+      var lineupCount = params.getElementCount('ROTable'+x);           
+      
+      // loop thru all rows in lineup table  
+      for(y=0;y&lt;lineupCount;y++){                                               
+         inceptionVideo = params.getValue("ROTable" + x +"." + y + ".video", 0);
+         
+         //if there is no video on that row in table - skip
+         if(inceptionVideo!==''){
+            inceptionAvailable = params.getValue("ROTable" + x +"." + y + ".available", 0);
+           
+            //loop thru all rows in cliplist and match them to current lineup 'video' row  
+            for(yy=0;yy&lt;K2ListCount;yy++){                                            
+               K2Available = params.getValue("clipTable." + yy + ".available", 0); 
+               K2Video = params.getValue("clipTable." + yy + ".clipname", 0);
+               //This checks if the inceptionVideo matchs K2Video ==&gt; if not - it will set flag to true
+               if(K2Video == inceptionVideo){
+                  
+                  flag = true;
+                  //if available status is different
+                  if(K2Available!==inceptionAvailable){ params.setValue("ROTable" + x + "." + y + ".available",0, K2Available); }
+                                            
+               }           
+            }
+     
+         //This will clear table available, if there is no match, AND avilable wasn't empty before ('')
+         if(flag==false&amp;&amp;inceptionAvailable!==''||flag==false&amp;&amp;inceptionAvailable!==redBackground){params.setValue("ROTable" + x + "." + y + ".available",0, redBackground);} else {flag = false;} 
+         }
+      }    
+   }
+   
+  ogscript.debug('match list ends');
+}
+
+
+function matchListToKnownK2clip(K2clip,server){  
+   var inceptionVideo,inceptionAvailable;
+   var K2ListCount = params.getElementCount('clipTable');             // constant list    
+   //loop thru all 6 possible lineups   
+   for (x = 1; x &lt; 7; x++) {                                                
+      var lineupCount = params.getElementCount('ROTable'+x);           
+      
+      // loop thru all rows in lineup table  
+      for(y=0;y&lt;lineupCount;y++){                                               
+         inceptionVideo = params.getValue("ROTable" + x +"." + y + ".video", 0);
+         if(inceptionVideo!==''){
+         
+            inceptionAvailable = params.getValue("ROTable" + x +"." + y + ".available", 0);
+            //This checks if the inceptionVideo matchs K2Video ==&gt; if not - it will set flag to true
+            if(K2clip == inceptionVideo){
+            
+               //if available status is different
+               if(''==inceptionAvailable){ params.setValue("ROTable" + x + "." + y + ".available",0, server); break;}
+               else {params.setValue("ROTable" + x + "." + y + ".available",0, params.getValue('K2Primary', 0) + ',' + params.getValue('K2Secondary', 0)); break; }   
+                                               
+            }                 
+         }    
+      }
+   }
+}
+
+
+ogscript.addRemoteTrigger ('loop','loop', loop);
+ogscript.addRemoteTrigger ('vtr','vtr', vtrAssign);</api>
+      <listener autostart="false" buttontype="toggle" delimiter="003C002F006D006F0073003E" delimitertype="bytes" height="40" id="server10541" left="1040" listenport="10541" name="server" top="100" width="340">
+         <task tasktype="ogscript">if (event.isConnectEvent()){ 
+   
+   ogscript.putObject('E', this);
+   params.setValue('led', 0, '&lt;#green&gt;');
+   
+   }
+
+if (event.isMessageEvent()){
+
+   var totalString = new java.lang.String(event.getBytes(), "UTF-16") + "&lt;/mos&gt;";
+   mosRouter(totalString.trim());
+
+   }
+
+if (event.isDisconnectEvent()){ 
+   
+   resetTables();
+   resetRoID();   
+   ogscript.putObject('ackCount', 1);
+   ogscript.putObject('roList', null);
+   ogscript.putObject('ROCounter', 0);
+   params.setValue('led', 0, '&lt;#red&gt;');
+
+   }</task>
+      </listener>
+      <listener autostart="false" buttontype="toggle" connecthost="10.168.1.130" connectport="10541" delimiter="003C002F006D006F0073003E" delimitertype="bytes" height="40" id="client10541" left="1040" name="client" top="100" width="340">
+         <task tasktype="ogscript">if (event.isConnectEvent()){ 
+   
+   ogscript.putObject('client10541', this);
+   this.writeAsBytes(strToHex(roReqAll));
+   params.setValue('led2', 0, '&lt;#green&gt;');
+   
+   }
+
+
+if (event.isMessageEvent()){
+
+   var totalString = new java.lang.String(event.getBytes(), "UTF-16") + "&lt;/mos&gt;";
+   mosRouter(totalString.trim());
+    
+   }
+
+if (event.isDisconnectEvent()){ 
+   
+   resetTables();
+   resetRoID();   
+   ogscript.putObject('ackCount', 1);
+   ogscript.putObject('roList', null);
+   ogscript.putObject('ROCounter', 0);
+   params.setValue('led2', 0, '&lt;#red&gt;');
+   
+}</task>
+      </listener>
+      <listener autostart="false" blockingpause="true" connecthost="10.168.1.89" connectport="3811" delimiter="1" delimitertype="fixedlen" height="40" id="K21.vtr1" left="940" name="A" top="100" width="80">
+         <task tasktype="ogscript">if (event.isConnectEvent())
+{ 
+ogscript.putObject('K21vtr1', this);
+this.writeString(vtr1Connection, false);
+ogscript.putObject('firstConnection1', true); 
+params.setValue('ledK21', 0, '&lt;#green&gt;');
+}
+
+if (event.isMessageEvent())
+{
+ var messageReader = ogscript.createMessageParser(this.getInputStream());
+ var response = event.getBytesAsString();
+ var bytesArr = messageReader.readBytes(3);
+ var i; var ampLen = "";
+ 
+ for (i = 0; i &lt; 3; i++) {
+     response += String.fromCharCode(bytesArr[i]);
+   }
+
+   //ogscript.debug('FROM LISTENERK21: ' + response);
+  
+  if(response == ackALIAS||response == nakALIAS || response == binListCompleteALIAS || response == noMoreIdALIAS||response == error ){
+      
+      messageRouterK21(response);
+     
+      if(ogscript.getObject('firstConnection1') == true){         // This condition runs if the ack was 
+         firstFolderRequest21();                                   // recieved for the first time connection, 
+         ogscript.putObject('firstConnection1', false); }         // if so he fires 'listFirstFolder'
+      
+      } else {
+         
+     var bytesArr = messageReader.readBytes(4);                  //  00090007646 for example
+     for (i = 0; i &lt; 4; i++) {
+     
+        ampLen += String.fromCharCode(bytesArr[i]);
+           } 
+        response += ampLen;      
+
+
+     var finalMsg = messageReader.readBytes(parseInt(ampLen,16)*2);
+     for (i = 0; i &lt; parseInt(ampLen,16)*2; i++) {
+     
+        response += String.fromCharCode(finalMsg[i]);
+           }    
+     messageRouterK21(response);
+         }                  
+}
+
+else if (event.isDisconnectEvent())
+{
+   var x = ogscript.getObject('K21vtr1');
+   if (x == this)
+   {
+      params.setValue('ledK21', 0, '&lt;#red&gt;');
+      ogscript.putObject('binList21',emptyArr); 
+      binListFinilize22(true); //true flag means serverDisconnect 
+      ogscript.putObject('clips21',emptyArr);
+      clipListFinilize(); 
+      ogscript.putObject('K21vtr1',null);     
+   }
+}</task>
+      </listener>
+      <listener autostart="false" blockingpause="true" connecthost="10.168.1.89" connectport="3811" delimiter="1" delimitertype="fixedlen" height="40" id="K22.vtr1" left="940" name="D" top="100" width="80">
+         <task tasktype="ogscript">if (event.isConnectEvent())
+{ 
+ogscript.putObject('K22vtr1', this);
+this.writeString(vtr1Connection, false);
+ogscript.putObject('firstConnection2', true); 
+params.setValue('ledK22', 0, '&lt;#green&gt;');
+}
+
+if (event.isMessageEvent())
+{
+ var messageReader = ogscript.createMessageParser(this.getInputStream());
+ var response = event.getBytesAsString();
+ var bytesArr = messageReader.readBytes(3);
+ var i; var ampLen = "";
+ 
+ for (i = 0; i &lt; 3; i++) {
+     response += String.fromCharCode(bytesArr[i]);
+   }
+
+   //ogscript.debug('FROM LISTENERK22: ' + response);
+  
+  if(response == ackALIAS||response == nakALIAS || response == binListCompleteALIAS || response == noMoreIdALIAS||response == error ){
+      
+      messageRouterK22(response);
+     
+      if(ogscript.getObject('firstConnection2') == true){         // This condition runs if the ack was 
+         firstFolderRequest22();                                   // recieved for the first time connection, 
+         ogscript.putObject('firstConnection2', false); }         // if so he fires 'listFirstFolder'
+      
+      } else {
+         
+     var bytesArr = messageReader.readBytes(4);                  //  00090007646 for example
+     for (i = 0; i &lt; 4; i++) {
+     
+        ampLen += String.fromCharCode(bytesArr[i]);
+           } 
+        response += ampLen;      
+
+
+     var finalMsg = messageReader.readBytes(parseInt(ampLen,16)*2);
+     for (i = 0; i &lt; parseInt(ampLen,16)*2; i++) {
+     
+        response += String.fromCharCode(finalMsg[i]);
+           }    
+     messageRouterK22(response);
+         }                  
+}
+
+else if (event.isDisconnectEvent())
+{
+   var x = ogscript.getObject('K22vtr1');
+   if (x == this)
+   {
+      params.setValue('ledK22', 0, '&lt;#red&gt;');
+      ogscript.putObject('binList22',emptyArr);      
+      binListFinilize21(true);
+      ogscript.putObject('clips22',emptyArr);
+      clipListFinilize(); 
+      ogscript.putObject('K22vtr1',null);         
+   }
+}</task>
+      </listener>
+      <listener autostart="false" blockingpause="true" connecthost="10.168.1.89" connectport="3811" delimiter="1" delimitertype="fixedlen" height="40" id="K21.vtr2" left="940" name="B" top="100" width="80">
+         <task tasktype="ogscript">if (event.isConnectEvent())
+{ 
+ogscript.putObject('K21vtr2', this);
+this.writeString(vtr2Connection, false);
+setBin('K21vtr2');
+}
+
+if (event.isMessageEvent())
+{
+ var messageReader = ogscript.createMessageParser(this.getInputStream());
+ var response = event.getBytesAsString();
+ var bytesArr = messageReader.readBytes(3);
+ for (i = 0; i &lt; 3; i++) {
+     response += String.fromCharCode(bytesArr[i]);
+   }
+   ogscript.debug('Channel B: ' + response);
+}
+
+else if (event.isDisconnectEvent())
+{
+  
+   var x = ogscript.getObject('K21vtr2');
+   if (x == this) { ogscript.putObject('K21vtr2',null); }
+
+}</task>
+      </listener>
+      <listener autostart="false" blockingpause="true" connecthost="10.168.1.89" connectport="3811" delimiter="1" delimitertype="fixedlen" height="40" id="K22.vtr2" left="940" name="E" top="100" width="80">
+         <task tasktype="ogscript">if (event.isConnectEvent())
+{ 
+ogscript.putObject('K22vtr2', this);
+this.writeString(vtr2Connection, false);
+setBin('K22vtr2');
+}
+
+
+
+
+if (event.isMessageEvent())
+{
+ var messageReader = ogscript.createMessageParser(this.getInputStream());
+ var response = event.getBytesAsString();
+ var bytesArr = messageReader.readBytes(3);
+ for (i = 0; i &lt; 3; i++) {
+     response += String.fromCharCode(bytesArr[i]);
+   }
+   ogscript.debug('Channel E: ' + response);
+}
+
+else if (event.isDisconnectEvent())
+{
+  
+   var x = ogscript.getObject('K22vtr2');
+   if (x == this) { ogscript.putObject('K22vtr2',null); }
+
+}</task>
+      </listener>
+      <listener autostart="false" blockingpause="true" connecthost="10.168.1.89" connectport="3811" delimiter="1" delimitertype="fixedlen" height="40" id="K21.vtr3" left="940" name="C" top="100" width="80">
+         <task tasktype="ogscript">if (event.isConnectEvent())
+{ 
+ogscript.putObject('K21vtr3', this);
+this.writeString(vtr3Connection, false);
+setBin('K21vtr3');
+}
+
+if (event.isMessageEvent())
+{
+ var messageReader = ogscript.createMessageParser(this.getInputStream());
+ var response = event.getBytesAsString();
+ var bytesArr = messageReader.readBytes(3);
+ for (i = 0; i &lt; 3; i++) {
+     response += String.fromCharCode(bytesArr[i]);
+   }
+   ogscript.debug('Channel C: ' + response);
+}
+
+else if (event.isDisconnectEvent())
+{
+  
+   var x = ogscript.getObject('K21vtr3');
+   if (x == this) { ogscript.putObject('K21vtr3',null); }
+
+}</task>
+      </listener>
+      <listener autostart="false" blockingpause="true" connecthost="10.168.1.89" connectport="3811" delimiter="1" delimitertype="fixedlen" height="40" id="K22.vtr3" left="940" name="F" top="100" width="80">
+         <task tasktype="ogscript">if (event.isConnectEvent())
+{ 
+ogscript.putObject('K22vtr3', this);
+this.writeString(vtr3Connection, false);
+setBin('K22vtr3');
+}
+
+if (event.isMessageEvent())
+{
+ var messageReader = ogscript.createMessageParser(this.getInputStream());
+ var response = event.getBytesAsString();
+ var bytesArr = messageReader.readBytes(3);
+ for (i = 0; i &lt; 3; i++) {
+     response += String.fromCharCode(bytesArr[i]);
+   }
+   ogscript.debug('Channel F: ' + response);
+}
+
+else if (event.isDisconnectEvent())
+{
+  
+   var x = ogscript.getObject('K22vtr3');
+   if (x == this) { ogscript.putObject('K22vtr3',null); }
+
+}</task>
+      </listener>
+   </meta>
+   <drawer height="940" id="test.drawer" left="0" tabfill="none" top="0" width="1920">
+      <abs height="940" left="60" style="bg#textbg;" top="800" width="1780">
+         <button baseurl="file:/C:/Users/alex/Desktop/dev%20project/DashBoardExamplePanels_1.0/STRUCT%20TABLE/table.grid" buttontype="push" height="40" id="table1" left="20" name="" style="bg#textbg;bdr#selectedmuted;bdr:round;" top="0" width="200">
+            <task tasktype="ogscript">ogscript.setXml('dynamic', dynamicTable("1"));</task>
+         </button>
+         <button baseurl="file:/C:/Users/alex/Desktop/dev%20project/DashBoardExamplePanels_1.0/STRUCT%20TABLE/table.grid" buttontype="push" height="40" id="table2" left="220" name="" style="bg#textbg;bdr:round;bdr#selectedmuted;" top="0" width="200">
+            <task tasktype="ogscript">ogscript.setXml('dynamic', dynamicTable("2"));</task>
+         </button>
+         <button baseurl="file:/C:/Users/alex/Desktop/dev%20project/DashBoardExamplePanels_1.0/STRUCT%20TABLE/table.grid" buttontype="push" height="40" id="table3" left="420" name="" style="bg#textbg;bdr:round;bdr#selectedmuted;" top="0" width="200">
+            <task tasktype="ogscript">ogscript.setXml('dynamic', dynamicTable("3"));</task>
+         </button>
+         <button baseurl="file:/C:/Users/alex/Desktop/dev%20project/DashBoardExamplePanels_1.0/STRUCT%20TABLE/table.grid" buttontype="push" height="40" id="table4" left="620" name="" style="bg#textbg;bdr#selectedmuted;bdr:round;" top="0" width="200">
+            <task tasktype="ogscript">ogscript.setXml('dynamic', dynamicTable("4"));</task>
+         </button>
+         <button baseurl="file:/C:/Users/alex/Desktop/dev%20project/DashBoardExamplePanels_1.0/STRUCT%20TABLE/table.grid" buttontype="push" height="40" id="table5" left="820" name="" style="bg#textbg;bdr:round;bdr#selectedmuted;" top="0" width="200">
+            <task tasktype="ogscript">ogscript.setXml('dynamic', dynamicTable("5"));</task>
+         </button>
+         <button baseurl="file:/C:/Users/alex/Desktop/dev%20project/DashBoardExamplePanels_1.0/STRUCT%20TABLE/table.grid" buttontype="push" height="40" id="table6" left="1020" name="" style="bg#textbg;bdr:round;bdr#selectedmuted;" top="0" width="200">
+            <task tasktype="ogscript">ogscript.setXml('dynamic', dynamicTable("6"));</task>
+         </button>
+         <param expand="true" height="40" left="1260" oid="selected" top="20" widget="100" width="60"/>
+         <abs height="881" id="dynamic" left="19" name="" style="bdr#selectedmuted;bdr:round;bg#textbg;font:bold;" top="41" width="1202"/>
+         <button buttontype="push" height="40" left="1480" style="mask-u:images/settings5.svg;bg#buttonbg;bdr:round;bdr#selectedmuted;" top="0" width="80">
+            <task tasktype="ogscript"/>
+            <task tasktype="ogscript">ogscript.reveal('settings-box');</task>
+         </button>
+         <param expand="true" height="840" id="dragspot" left="1240" oid="clipTable" showlabel="false" style="bdr:round;bg#textbg;bdr#selectedmuted;fg#tabbg;di-u:images/96958.png;t:bg#tabbg;" top="80" width="320">
+            <config key="w.cellediting">false</config>
+            <config key="w.showheader">false</config>
+            <config key="w.colminwidth.0">220</config>
+            <config key="w.selectionparam">selectedClipList</config>
+            <config key="w.padding">5,0</config>
+            <config key="w.rowheight">30</config>
+         </param>
+         <table bottom="20" right="0" top="0" width="340">
+            <tr>
+               <abs colspan="1" fill="both" id="player.A" rowspan="1" style="bdr:round;bdr#selectedmuted;di-u:images/fist.svg;" weightx="1.0" weighty="1.0">
+                  <label height="40" id="player.A" left="20" name="A" style="txt-align:west;font:mono;size:Big;fg#selectbg;" top="0" width="20"/>
+                  <param expand="true" height="20" id="player.A" left="20" oid="playerA.cueName" style="bdr:none;fg#FDDDDDBF;size:16;" top="60" width="240"/>
+                  <button buttontype="push" height="40" left="20" name="" style="mask-u:images/play%20(1).svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K21vtr1'); 
+player.writeString(playON, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="80" name="" style="mask-u:images/stop.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K21vtr1'); 
+player.writeString(stop, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="140" name="" style="mask-u:images/eject.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K21vtr1'); 
+player.writeString(eject, false);
+params.setValue('playerA.cueName', 0, '');</task>
+                  </button>
+               </abs>
+            </tr>
+            <tr>
+               <abs colspan="1" fill="both" id="player.B" rowspan="1" style="bdr:round;bdr#selectedmuted;" weightx="1.0" weighty="1.0">
+                  <label height="40" id="player.B" left="20" name="B" style="txt-align:west;font:mono;size:Big;fg#selectbg;" top="0" width="20"/>
+                  <param expand="true" height="20" id="player.B" left="20" oid="playerB.cueName" style="bdr:none;fg#FDDDDDBF;size:16;" top="60" width="240"/>
+                  <button buttontype="push" height="40" left="20" name="" style="mask-u:images/play%20(1).svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K21vtr2'); 
+player.writeString(playON, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="80" name="" style="mask-u:images/stop.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K21vtr2'); 
+player.writeString(stop, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="140" name="" style="mask-u:images/eject.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K21vtr2'); 
+player.writeString(eject, false);
+params.setValue('playerB.cueName', 0, '');</task>
+                  </button>
+               </abs>
+            </tr>
+            <tr>
+               <abs colspan="1" fill="both" id="player.C" rowspan="1" style="bdr:round;bdr#selectedmuted;" weightx="1.0" weighty="1.0">
+                  <label height="40" id="player.C" left="20" name="C" style="txt-align:west;font:mono;size:Big;fg#selectbg;" top="0" width="20"/>
+                  <param expand="true" height="20" id="player.C" left="20" oid="playerC.cueName" style="bdr:none;fg#FDDDDDBF;size:16;" top="60" width="240"/>
+                  <button buttontype="push" height="40" left="20" name="" style="mask-u:images/play%20(1).svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K21vtr3'); 
+player.writeString(playON, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="80" name="" style="mask-u:images/stop.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K21vtr3'); 
+player.writeString(stop, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="140" name="" style="mask-u:images/eject.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K21vtr3'); 
+player.writeString(eject, false);
+params.setValue('playerC.cueName', 0, '');</task>
+                  </button>
+               </abs>
+            </tr>
+            <tr>
+               <abs colspan="1" fill="both" id="player.D" rowspan="1" style="bdr:round;bdr#selectedmuted;" weightx="1.0" weighty="1.0">
+                  <label height="40" id="player.D" left="20" name="D" style="txt-align:west;font:mono;size:Big;fg#selectbg;" top="0" width="20"/>
+                  <param expand="true" height="20" id="player.D" left="20" oid="playerD.cueName" style="bdr:none;fg#FDDDDDBF;size:16;" top="60" width="240"/>
+                  <button buttontype="push" height="40" left="20" name="" style="mask-u:images/play%20(1).svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K22vtr1'); 
+player.writeString(playON, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="80" name="" style="mask-u:images/stop.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K22vtr1'); 
+player.writeString(stop, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="140" name="" style="mask-u:images/eject.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K22vtr1'); 
+player.writeString(eject, false);
+params.setValue('playerD.cueName', 0, '');</task>
+                  </button>
+               </abs>
+            </tr>
+            <tr>
+               <abs colspan="1" fill="both" id="player.E" rowspan="1" style="bdr:round;bdr#selectedmuted;" weightx="1.0" weighty="1.0">
+                  <label height="40" id="player.E" left="20" name="E" style="txt-align:west;font:mono;size:Big;fg#selectbg;" top="0" width="20"/>
+                  <param expand="true" height="20" id="player.E" left="20" oid="playerE.cueName" style="bdr:none;fg#FDDDDDBF;size:16;" top="60" width="240"/>
+                  <button buttontype="push" height="40" left="20" name="" style="mask-u:images/play%20(1).svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K22vtr2'); 
+player.writeString(playON, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="80" name="" style="mask-u:images/stop.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K22vtr2'); 
+player.writeString(stop, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="140" name="" style="mask-u:images/eject.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K22vtr2'); 
+player.writeString(eject, false);
+params.setValue('playerE.cueName', 0, '');</task>
+                  </button>
+               </abs>
+            </tr>
+            <tr>
+               <abs colspan="1" fill="both" id="player.F" rowspan="1" style="bdr:round;bdr#selectedmuted;" weightx="1.0" weighty="1.0">
+                  <label height="40" id="player.F" left="20" name="F" style="txt-align:west;font:mono;size:Big;fg#selectbg;" top="0" width="20"/>
+                  <param expand="true" height="20" id="player.F" left="20" oid="playerF.cueName" style="bdr:none;fg#FDDDDDBF;size:16;" top="60" width="240"/>
+                  <button buttontype="push" height="40" left="20" name="" style="mask-u:images/play%20(1).svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K22vtr3'); 
+player.writeString(playON, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="80" name="" style="mask-u:images/stop.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K22vtr3'); 
+player.writeString(stop, false);</task>
+                  </button>
+                  <button buttontype="push" height="40" left="140" name="" style="mask-u:images/eject.svg;bg#tabbg;bdr#selectedmuted;bdr:round;" top="100" width="60">
+                     <task tasktype="ogscript">var player = ogscript.getObject('K22vtr3'); 
+player.writeString(eject, false);
+params.setValue('playerF.cueName', 0, '');</task>
+                  </button>
+               </abs>
+            </tr>
+         </table>
+         
+         <label bottom="0" height="20" id="bar" name="" right="200" style="txt-align:west;fg#lightdivider;" width="1700"/>
+         <label height="40" id="label.nrcs" left="1240" name="INCEPTION" style="txt-align:center;bdr#selectedmuted;bdr:round;font:bold;" top="0" width="80"/>
+         <label height="40" id="label.k21" left="1320" name="" style="txt-align:center;bdr#selectedmuted;bdr:round;font:bold;" top="0" width="80"/>
+         <label height="40" id="label.k22" left="1400" name="" style="txt-align:center;bdr#selectedmuted;bdr:round;font:bold;" top="0" width="80"/>
+         <label height="40" left="1240" style="txt-align:west;bg#434A567C;" top="0" width="240"/>
+         <abs anchor="west" bottom="20" id="settings-box" left="1240" name="CLOSE" style="bg#panelbg;bdr:etched;" tabhidden="true" tabstyle="bg#00000059;grid#0000003A;font:mono;" top="80" visible="false" width="320">
+            <param expand="true" height="40" left="80" oid="hostNRCS" top="200" width="100"/>
+            <label height="40" left="20" name="NRCS:" style="txt-align:west;" top="200" width="60"/>
+            <param expand="true" height="180" left="6" oid="ledK2-1" scroll="vertical" top="760" width="454"/>
+            <button buttontype="push" height="40" left="180" name="Connect" style="txt-align:west;bg-fill:none;bg#tableheader;" top="200" width="100">
+               <task tasktype="ogscript">var ip = params.getValue('hostNRCS', 0);
+var client = ogscript.getListenerById ('client10541');
+var server = ogscript.getListenerById ('server10541');
+
+if(client.isStarted() ==true&amp;&amp;server.isStarted()&amp;&amp;true){
+   client.stop();
+   server.stop();
+   } else {
+      
+   client.connectTo(ip, 10541);
+   server.start();            
+      }</task>
+            </button>
+            <param expand="true" height="40" left="240" oid="led2" top="200" width="40">
+               <task tasktype="ogscript">labelUpdate('led2');</task>
+            </param>
+            <param expand="true" height="40" left="240" oid="led" top="200" width="20">
+               <task tasktype="ogscript">labelUpdate('led');</task>
+            </param>
+            <button buttontype="push" height="40" left="180" name="Connect" style="txt-align:west;bg#tableheader;" top="240" width="100">
+               <task tasktype="ogscript">var listenerA = ogscript.getListenerById('K21.vtr1'); 
+var listenerB = ogscript.getListenerById('K21.vtr2'); 
+var listenerC = ogscript.getListenerById('K21.vtr3'); 
+var ip = params.getValue('hostK21', 0);
+
+if(listenerA.isStarted()){
+   listenerA.stop();
+   listenerB.stop();
+   listenerC.stop();
+
+   } else {
+   listenerA.connectTo(ip, 3811);
+   listenerB.connectTo(ip, 3811);
+   listenerC.connectTo(ip, 3811);
+      }</task>
+            </button>
+            <param expand="true" height="40" left="80" oid="hostK21" top="240" width="100"/>
+            <label height="40" left="20" name="K2-1:" style="txt-align:west;" top="240" width="60"/>
+            <label height="40" left="20" name="K2-2:" style="txt-align:west;" top="280" width="60"/>
+            <param expand="true" height="40" left="80" oid="hostK22" top="280" width="100"/>
+            <button buttontype="push" height="40" left="180" name="Connect" style="txt-align:west;bg#tableheader;" top="280" width="100">
+               <task tasktype="ogscript">var listenerD = ogscript.getListenerById('K22.vtr1'); 
+var listenerE = ogscript.getListenerById('K22.vtr2'); 
+var listenerF = ogscript.getListenerById('K22.vtr3'); 
+
+var ip = params.getValue('hostK22', 0);
+
+
+if(listenerD.isStarted()){
+   listenerD.stop();
+   listenerE.stop();
+   listenerF.stop();
+   } else {
+   listenerD.connectTo(ip, 3811);
+   listenerE.connectTo(ip, 3811);
+   listenerF.connectTo(ip, 3811);
+      }</task>
+            </button>
+            <param expand="true" height="40" left="1620" oid="ledK2-2" top="160" width="40"/>
+            <param expand="true" height="40" left="240" oid="ledK22" top="280" width="40">
+               <task tasktype="ogscript">labelUpdate('k22');
+ogscript.asyncExec(matchLists,3000);</task>
+            </param>
+            <button buttontype="push" gpi="play" height="40" left="0" name="play" top="680" visible="false" width="60">
+               <task tasktype="ogscript">play();</task>
+            </button>
+            <button buttontype="push" gpi="cue" height="40" left="60" name="cue" top="680" visible="false" width="60">
+               <task tasktype="ogscript">cue();</task>
+            </button>
+            <button buttontype="push" height="40" left="120" name="test table" top="680" visible="false" width="80">
+               <task tasktype="ogscript">var test = [
+{"available": "TLV1" ,"clipname":"blablabla" },
+{"available": "TLV1" ,"clipname":"blablabla2" },
+{"available": "TLV1" ,"clipname":"blablabla3" },
+{"available": "TLV1" ,"clipname":"blablabla4" },
+{"available": "TLV1" ,"clipname":"blablabla5" },
+{"available": "TLV1" ,"clipname":"blablabla6" },
+{"available": "TLV1" ,"clipname":"blablabla7" },
+{"available": "TLV1" ,"clipname":"blablabla8" },
+{"available": "TLV1" ,"clipname":"blablabla9" },
+{"available": "TLV1" ,"clipname":"blablabla10" },
+{"available": "TLV1" ,"clipname":"blablabla11" }
+
+];
+params.setAllValues('clipTable', test);</task>
+            </button>
+            <param expand="true" height="20" left="60" oid="binList" style="bdr:line;" top="760" visible="false" width="140"/>
+            <help height="40" left="40" name="About this software release" style="bg#1D3A37;font:default;fg#panelfg;look:round;" title="Acontrol 1.1" top="780" width="240">&lt;html&gt;&lt;left&gt; 1.06 release updates:
+&lt;br/&gt;&lt;br/&gt;Fixed: Play moves selection to next item.
+&lt;br/&gt;Fixed :Cue sends full-path clipname to K2.
+&lt;br/&gt;Fixed: Disabled vtr-assign to non-video items.
+&lt;br/&gt;Fixed: Disabled play on non-cued items.
+&lt;br/&gt;Fixed: Cue now updates players.
+&lt;br/&gt;Fixed: N/A videos are red-labeled.
+&lt;br/&gt;Fixed: Loop can be changed while playing.
+&lt;br/&gt;&lt;br/&gt;1.1 release updates:
+&lt;br/&gt;&lt;br/&gt;Fixed: Added roMetadataReplace event (ro rename, date changes itc).
+&lt;br/&gt;Debug: Mos protocol log (daily splitted) .
+&lt;br/&gt;&lt;br/&gt;Created by Alex, 2020-2021&lt;/left&gt;&lt;/html&gt;</help>
+            <label height="60" left="0" name="Acontrol 1.1" right="0" style="txt-align:center;size:28;font:mono;fg#selectbg;" top="40"/>
+            <label height="20" left="20" name="Working bin:" style="txt-align:west;" top="500" width="120"/>
+            <label height="20" left="20" name="K1 name (A,B,C):" style="txt-align:west;" top="420" width="120"/>
+            <label height="20" left="20" name="K2 name (D,E,F):" style="txt-align:west;" top="460" width="120"/>
+            <param expand="true" height="20" left="140" oid="workingBin" top="500" width="120"/>
+            <param expand="true" height="20" left="140" oid="K2Primary" runtasksonload="true" top="420" width="120">
+               <task tasktype="ogscript">ogscript.rename('label.k21', this.getValue());</task>
+            </param>
+            <param expand="true" height="20" left="140" oid="K2Secondary" runtasksonload="true" top="460" width="120">
+               <task tasktype="ogscript">ogscript.rename('label.k22', this.getValue());</task>
+            </param>
+            <param expand="true" height="40" left="240" oid="ledK21" top="240" width="40">
+               <task tasktype="ogscript">labelUpdate('k21');
+ogscript.asyncExec(matchLists,3000);</task>
+            </param>
+            
+            <label header="true" height="20" left="0" name="Connection settings" right="0" style="txt-align:center;size:Normal;font:default;fg#selectbg;bdr:none;" top="140"/>
+            <label header="true" height="20" left="0" name="K2 settings" right="0" style="txt-align:center;size:Normal;font:default;fg#selectbg;bdr:none;" top="360"/>
+            
+            
+            
+         <button buttontype="push" height="22" name="X" right="5" style="size:Normal;look:flat;" top="5" width="27">
+               <task tasktype="ogscript">ogscript.hide("settings-box");</task>
+            </button>
+            <param expand="true" height="40" left="60" oid="dateForLog" style="style:timerLabel;" top="680" visible="false" width="180"/>
+         </abs>
+      <param expand="true" height="40" left="1240" oid="realClock" style="style:timerLabel;bdr:round;bg#textbg;bdr#selectedmuted;" top="40" width="320"/>
+      </abs>
+   </drawer>
+</abs>

@@ -1,0 +1,458 @@
+/* Quadro 1.3.4 stylesheet */
+
+html, body 
+{
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 14px;
+	background: #1a1a1a;
+}
+
+#divLogin 
+{
+	top:5px;
+	height: 206px; 
+	color: #eeeeee;
+	background: #1a1a1a;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 12px;
+	align-content: right;
+}
+
+
+#divVideoContainer
+{
+	position: fixed;
+	left: 0px;	
+	width: 438px;
+	bottom: 46px;
+	height: 249px;	
+	background: #2f2e34;	
+	border-top: 2px solid #272727;
+}
+
+#divVideoTitle 
+{
+	width: 99%; 
+	height: 26px; 	
+	color: #257954;
+	line-height: 26px; 
+	padding-left: 6px;
+	background: #1a1a1a;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 13px;
+}
+
+#divRundowns
+{
+	position: fixed;
+	left: 0;
+	top: 36px;	
+	width: 438px;
+	height: 400px;		
+	bottom: 516px;
+	background: #1a1a1a;
+	color: white;
+	overflow-y: auto;	
+}
+
+#divStoryContent 
+{
+	position: fixed;	
+	left: 0px;	
+	width: 430px;
+	top: 447px;
+	bottom: 299px;
+	height: auto;	
+	background: #1a1a1a;
+	color: white;
+	overflow-y: auto;
+	overflow-x: hidden;
+	scroll-padding-left: 5px;
+
+}
+
+#divStoryContentHeader
+{
+	position: fixed;
+	left: 1481px;	
+	width: 440px;
+	top: 420px;
+	bottom: 290px;	
+	height: 26px; 	
+	color: #a5a2a2;
+	line-height: 26px; 
+	background: #212121;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 14px;
+	
+}
+
+
+
+
+
+#topBar 
+{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	background: #1a1a1a;
+	color: white;
+	vertical-align: middle;
+	text-align: left;
+	padding-left: 12px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 14px;	
+	border-bottom: 1px solid #272727;	
+}
+
+#txtSearch
+{
+	position: fixed;
+	padding-right: 5px;
+	bottom: 0px;
+	height: 22px;
+	width: 120px;
+	right: 10px;
+	text-align: right;
+	line-height: 22px;
+	background: #1a1a1a;
+	color: #777777;	
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 12px;	
+}
+
+#bottomBar
+{
+	position: fixed;
+	left: 0;
+	bottom: 0px;
+	width: 100%;
+	height: 22px;
+	line-height: 22px;
+	padding-left: 5px;
+	color: #777777;
+	background: #1a1a1a;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 12px;
+}
+
+
+
+
+#divRundownItems 
+{
+	position: fixed;	
+	left: 440px;
+	top: 36px;
+	right: 0px;
+	bottom: 20px;
+	background: #212121;
+	color: white;
+	overflow-y: auto;
+}
+
+
+
+
+
+#divLogin
+{	
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+#divVideo
+{	
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+#divBg
+{		
+	position: fixed; 
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%;
+	overflow: auto; 
+	background-color: rgb(0,0,0); 
+	background-color: rgba(0,0,0,0.4);
+	visibility: hidden;
+}
+
+#divOflline
+{		
+	position: fixed; 
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%;
+	overflow: auto; 
+	visibility: visible;
+}
+
+#divDisconnectedOriginal 
+{
+	position: fixed;
+	top: calc(50% - 45px);
+	left: calc(50% - 350px);
+	width: 700px;
+	height: 100px;		
+	line-height: 100px;
+	z-index: 2;
+	background: #DD2222;
+	color: #dddddd;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 55px;
+	text-align: center;		
+	border-radius: 5px;
+}
+
+#divDisconnected 
+{
+	position: fixed;
+	top:34px;
+	width: 1920px;
+	height: 1000px;		
+	line-height: 100px;
+	padding-top:18%;
+	z-index: 2;
+	background: #181515;
+	color: #851010;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 60px;
+	text-align: center;		
+	border-radius: 5px;
+}
+
+table 
+{
+	width: 100%;
+	height: 100%;
+}
+
+
+
+.red
+{	
+	color: #ad0a0a; 
+
+}
+
+.gray
+{	
+	color: #777777;
+}
+
+
+.trInventory
+{	
+	cursor: pointer;
+	height: 44px;
+}
+
+.trInventory:hover 
+{
+	background: #454545;
+	color: yellow;
+}
+
+.trInventory td 
+{
+	color: white;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 13px;
+	border-bottom: 1px solid #212121;
+	padding-left: 5px;
+	line-height: 18px;
+}
+
+.tdInventoryImage 
+{
+	width: 63px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+
+
+
+
+
+.thRundown
+ {
+	height: 35px;	
+	width: 100%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.trRundown {
+	height: 35px;	
+	width: 100%;
+	cursor: pointer;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.trRundown:hover 
+{
+	background: #272727;
+}
+
+.trRundown td 
+{
+	color: white;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 14px;
+	padding-left: 5px;
+	border-bottom: 1px solid #292929;
+	cursor: pointer;
+}
+
+
+
+
+
+
+.thItems {
+	
+	width: 100%;
+
+	background: #262626;
+	height: 28px;		
+}
+
+.thItems td 
+{
+	color: #787878;
+	padding-left: 5px;
+	font-size: 14px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.trItemsBreak
+{
+	
+
+    background: #31302a;	
+	cursor: pointer;
+	height: 30px;
+	font-size: 15px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.trItems
+{
+    background: #212121;	
+	cursor: pointer;
+	height: 30px;
+}
+
+.trItems td
+{	
+	color: #dddddd;
+	font-size: 15px;
+	padding-left: 5px;
+	border-bottom: 1px solid #292929;
+}
+
+.trItems:hover 
+{
+	background: #254161;
+}
+
+.tdItemsNum 
+{
+	width: 30px;
+}
+
+.tdItemsStory
+{
+	width: 350px;
+}
+
+.tdItemsType
+{
+	width: 120px;
+}
+
+.tdItemsMediaId
+{
+	width: 300px;
+	min-width: 140px;
+}
+
+.tdItemsStatus
+{
+	width: 120px;
+}
+
+.tdItemsNotes
+{
+    width: 350px;
+}
+
+.tdItemsDur 
+{
+	width: 100px;
+}
+
+.tdItemsSpare 
+{
+	width: 50px;
+}
+
+
+
+
+
+
+input[type=search] 	
+{
+	background: #444444;
+	border: 1px solid #484848;
+	border-radius: 3px;
+	padding: 3px;
+	color: white;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #3f3f3f;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #6f6f6f;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+.center {
+	padding-top: 17%;  
+	justify-content: center;
+	margin: auto;
+	width: 11%;
+	align-items: center;
+  }
